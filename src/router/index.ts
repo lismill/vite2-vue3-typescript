@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
+import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
 
 // 自动导入当前目录下的路由配置
 const modules = import.meta.globEager("./*.ts");
@@ -36,7 +36,7 @@ const router = createRouter({
    * 路由模式
    * createWebHashHistory || createWebHistory
    */
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 
