@@ -1,5 +1,5 @@
 <template>
-  <l-base-table :config="config" @click:operate="clickOperate">
+  <l-table :config="config" @click:operate="clickOperate">
     <template #operate="scope">
       <a class="link" @click="clickOperate({name: '编辑'}, scope.rows)">编辑</a>
       <a class="link" @click="clickOperate({name: '删除'}, scope.rows)">删除</a>
@@ -8,7 +8,7 @@
       <img style="width: 32px; height: 32px; border-radius: 50%" src="https://i.postimg.cc/Lsw8GQv5/icon.jpg" />
       <span class="m-l6">Lean</span>
     </template>
-  </l-base-table>
+  </l-table>
 </template>
 <script setup lang="ts">
 import {notification} from "ant-design-vue";

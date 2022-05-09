@@ -75,6 +75,7 @@ import {onMounted, ref, watch} from "vue";
 import {useRoute} from "vue-router";
 import screenfull from "screenfull";
 import useStoreCommon from "@/stores/common";
+import storage from "@/utils/local-storage";
 
 const props = withDefaults(
   defineProps<{
@@ -114,6 +115,7 @@ const resetBreadcrumb = () => {
 // 折叠菜单
 const trigger = () => {
   USE_STORE_COMMON.changeCollapsed(!props.collapsed);
+  storage.set(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_COLLAPSED`, !props.collapsed);
   emit("update:collapsed", !props.collapsed);
 };
 

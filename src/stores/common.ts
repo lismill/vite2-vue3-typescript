@@ -1,10 +1,11 @@
 import {defineStore} from "pinia";
+import storage from "@/utils/local-storage";
 
 const useStoreCommon = defineStore("STORE_COMMON)", {
   state: () => {
     return {
       version: "v1.0",
-      collapsed: false,
+      collapsed: storage.get(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_COLLAPSED`) ?? true,
     };
   },
   actions: {

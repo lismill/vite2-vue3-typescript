@@ -24,10 +24,11 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
+import storage from "@/utils/local-storage";
 
 import FrameworkSider from "./framework-sider.vue";
 import FrameworkHeader from "./framework-header.vue";
 import FrameworkContent from "./index.vue";
 
-const collapsed = ref(false);
+const collapsed = ref(storage.get(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_COLLAPSED`) ?? true);
 </script>
