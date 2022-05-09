@@ -1,9 +1,10 @@
 ## 版本信息
-
-"vite": "^2.9.0",
-"prettier": "^2.6.2",
-"eslint": "^7.32.0",
-"typescript": "^4.5.4",
+|插件|版本|
+| ----- | ----- |
+|vite|^2.9.0|
+|prettier|^2.6.2|
+|eslint|^7.32.0|
+|typescript|^4.5.4|
 
 ## Eslint + Prettier 代码规范和自动格式化
 

@@ -50,8 +50,8 @@ const getData = async () => {
     page: deepConfig.value?.footer?.pagination?.currentPage ?? 1,
     pageSize: deepConfig.value?.footer?.pagination?.pageSize ?? 10,
   });
-  deepConfig.value.table.data = res.data.rows;
-  deepConfig.value.footer.pagination.total = res.data.total;
+  deepConfig.value.table.data = res.data;
+  deepConfig.value.footer.pagination.total = res.total;
   deepConfig.value.footer.checked = false;
   loading.value = false;
 };

@@ -71,9 +71,9 @@ export default {
         ellipsis: true,
       },
       {
-        title: "guid",
+        title: "年龄",
         width: 300,
-        dataIndex: "guid",
+        dataIndex: "age",
       },
       {
         title: "日期",
@@ -82,7 +82,7 @@ export default {
       },
       {
         title: "城市",
-        dataIndex: "city",
+        dataIndex: "custom",
         width: 300,
       },
       {
