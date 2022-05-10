@@ -20,6 +20,7 @@
           >
             <a-input
               v-model:value="formState[item.name]"
+              :allow-clear="true"
               :placeholder="`请输入${item.label}`"
               v-bind="item.others"
               @blur="onChange"
@@ -31,7 +32,6 @@
               v-model:value="formState[item.name]"
               :placeholder="`请输入${item.label}`"
               style="width: 100%"
-              value-format="YYYY-MM-DD"
               v-bind="item.others"
               @change="onChange"
             />

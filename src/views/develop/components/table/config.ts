@@ -12,9 +12,7 @@ export default {
         type: "input",
         label: "姓名姓名",
         name: "name",
-        others: {
-          allowClear: true,
-        },
+        others: {},
       },
       {type: "date", label: "日期", name: "date", others: {}},
       {type: "date", label: "日期", name: "date", others: {}},

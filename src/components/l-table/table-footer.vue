@@ -102,7 +102,7 @@ const clickOperate = (item: any) => {
 .table-footer.fixed {
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 21px;
   transition: all 0.22s;
 }
 </style>

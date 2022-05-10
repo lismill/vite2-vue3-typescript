@@ -162,3 +162,13 @@ $colors: (
     background-color: $color;
   }
 }
+
+/**
+ * 字体大小
+ */
+$fonts: 12, 13, 14, 16, 18, 20, 26, 32;
+@each $i in $fonts {
+  .font-#{$i} {
+    font-size: #{$i} + px;
+  }
+}

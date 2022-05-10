@@ -31,6 +31,8 @@ module.exports = {
     "no-return-assign": "off",
     // 禁止变量声明覆盖外层作用域的变量
     "no-shadow": "off",
+    // 禁止使用 v-html
+    "vue/no-v-html": "off",
     // 关闭any类型的警告
     "@typescript-eslint/no-explicit-any": ["off"],
     // 忽略路径别名
