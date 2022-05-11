@@ -36,7 +36,16 @@ export default {
           name: "/develop/components/table",
           component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/table/index.vue"),
           meta: {
-            title: "表格组件",
+            title: "基础表格",
+            // icon: "bx:table",
+          },
+        },
+        {
+          path: "table-edit",
+          name: "/develop/components/table-edit",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/table-edit/index.vue"),
+          meta: {
+            title: "编辑表格",
             // icon: "bx:table",
           },
         },

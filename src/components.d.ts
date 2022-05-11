@@ -50,7 +50,7 @@ declare module '@vue/runtime-core' {
     LIfyIcon: typeof import('./components/l-ify-icon/index.vue')['default']
     LSvgIcon: typeof import('./components/l-svg-icon/index.vue')['default']
     LTable: typeof import('./components/l-table/index.vue')['default']
-    LUpload: typeof import('./components/l-upload/index.vue')['default']
+    LTableEdit: typeof import('./components/l-table-edit/index.vue')['default']
     LUploadFile: typeof import('./components/l-upload-file/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

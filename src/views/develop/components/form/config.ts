@@ -112,6 +112,11 @@ export default {
             maxLength: 4,
           },
         },
+        {
+          type: "slot",
+          label: "自定义插槽",
+          name: "slot",
+        },
       ],
     },
     {
@@ -146,13 +151,8 @@ export default {
           name: "date",
           others: {picker: "year"},
         },
-        {type: "range", label: "活动时间", name: "range", others: {}},
-        {type: "range", label: "活动时间范围", name: "rangeTime", others: {showTime: true}},
-        {
-          type: "slot",
-          label: "自定义插槽",
-          name: "slot",
-        },
+        {type: "daterange", label: "活动时间", name: "daterange", others: {}},
+        {type: "daterange", label: "活动时间范围", name: "rangeTime", others: {showTime: true}},
       ],
     },
   ],

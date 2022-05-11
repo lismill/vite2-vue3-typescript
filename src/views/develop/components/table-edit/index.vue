@@ -1,36 +1,20 @@
 <template>
   <div class="bg-ffffff p-16">
-    <l-form :config="deepConfig">
-      <template #slot="{data, item}">
-        <p class="m-b8">我是自定义插槽 - {{ data[item.name] }}</p>
-        <l-table-edit :config="tableEditConfig" @update:table:edit="updateTableEdit"></l-table-edit>
-      </template>
-    </l-form>
+    <l-table-edit :config="config" @update:table:edit="updateTableEdit"></l-table-edit>
   </div>
 </template>
+
 <script setup lang="ts">
-import {ref} from "vue";
 import {notification} from "ant-design-vue";
-import config from "./config";
 
-const deepConfig: any = ref(config);
-deepConfig.value.form.data = {
-  text: "展示文本信息，支持 <b style='color: #ff4d4f;'>HTML</b>",
-  slot: 1,
-  switch: false,
-  upload: [{name: "1"}, {name: "2"}],
-};
-
-/**
- * 可编辑表格插槽
- */
 const updateTableEdit = (data: any) => {
   notification.success({
     message: "操作提示",
-    description: JSON.stringify(data),
+    description: `${JSON.stringify(data)}`,
   });
 };
-const tableEditConfig = {
+
+const config = {
   // disabled: true,
   headerButton: true,
   footerButton: true,
@@ -95,4 +79,4 @@ const tableEditConfig = {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>

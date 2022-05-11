@@ -1,9 +1,9 @@
 <template>
-  <div v-if="deepConfig?.sections?.length > 0 && deepConfig?.form?.data" class="l-form p-16 p-b56 bg-ffffff">
+  <div v-if="deepConfig?.sections?.length > 0 && deepConfig?.form?.data" class="l-form p-b56">
     <a-form ref="formRef" :model="deepConfig.form.data" @finish="onFinish">
       <div v-for="(section, index) in deepConfig.sections" :key="index">
         <div v-if="section.title" class="title m-b24">{{ section.title }}</div>
-        <a-row class="p-r56">
+        <a-row class="p-r32">
           <a-col v-for="item in section.items" :key="item.name" :span="deepConfig?.form?.span ?? 24">
             <!-- text -->
             <a-form-item v-if="item.type === 'text'" :name="item.name" :rules="item.rules">
@@ -133,8 +133,8 @@
               />
               <form-info v-if="item.info" :info="item.info"></form-info>
             </a-form-item>
-            <!-- range -->
-            <a-form-item v-if="item.type === 'range'" :name="item.name" :rules="item.rules">
+            <!-- daterange -->
+            <a-form-item v-if="item.type === 'daterange'" :name="item.name" :rules="item.rules">
               <template #label><form-tooltip v-bind="item"></form-tooltip></template>
               <a-range-picker
                 v-model:value="deepConfig.form.data[item.name]"
@@ -259,9 +259,9 @@ watch(
     padding-right: 8px;
     text-align: right;
   }
-  :deep .ant-form-horizontal .ant-form-item-control {
-    max-width: 560px;
-  }
+  // :deep .ant-form-horizontal .ant-form-item-control {
+  //   max-width: 560px;
+  // }
   :deep .ant-form-item .ant-input-textarea-show-count::after {
     position: relative;
     top: -26px;
