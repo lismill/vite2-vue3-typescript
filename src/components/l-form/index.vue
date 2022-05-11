@@ -146,7 +146,18 @@
               <form-info v-if="item.info" :info="item.info"></form-info>
             </a-form-item>
             <!-- upload -->
-            <a-form-item v-if="item.type === 'upload'" :name="item.name" :rules="item.rules"> upload </a-form-item>
+            <a-form-item v-if="item.type === 'upload'" :name="item.name" :rules="item.rules">
+              <template #label><form-tooltip v-bind="item"></form-tooltip></template>
+              <l-upload-file
+                :config="{
+                  ...item.others,
+                  disabled: config?.form?.disabled,
+                  fileList: deepConfig.form.data[item.name],
+                }"
+                @file:change="(fileList) => (deepConfig.form.data[item.name] = fileList)"
+              ></l-upload-file>
+              <form-info v-if="item.info" :info="item.info"></form-info>
+            </a-form-item>
             <!-- slot -->
             <a-form-item v-if="item.type === 'slot'" :name="item.name" :rules="item.rules">
               <template #label><form-tooltip v-bind="item"></form-tooltip></template>

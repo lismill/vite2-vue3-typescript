@@ -101,6 +101,17 @@ export default {
           rules: [{required: true, message: "请输入多行文本"}],
           others: {},
         },
+        {
+          type: "upload",
+          label: "文件上传",
+          name: "upload",
+          rules: [{required: true, message: "请上传文件"}],
+          others: {
+            action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+            accept: ".jpg,.png",
+            maxLength: 4,
+          },
+        },
       ],
     },
     {

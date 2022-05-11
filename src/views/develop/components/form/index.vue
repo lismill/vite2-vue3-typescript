@@ -8,13 +8,12 @@ import {ref} from "vue";
 import config from "./config";
 
 const deepConfig: any = ref(config);
-setTimeout(() => {
-  deepConfig.value.form.data = {
-    text: "展示文本信息，支持 <b style='color: #ff4d4f;'>HTML</b>",
-    slot: 1,
-    switch: false,
-  };
-}, 800);
+deepConfig.value.form.data = {
+  text: "展示文本信息，支持 <b style='color: #ff4d4f;'>HTML</b>",
+  slot: 1,
+  switch: false,
+  upload: [{name: "1"}, {name: "2"}],
+};
 </script>
 
 <style lang="scss" scoped></style>
