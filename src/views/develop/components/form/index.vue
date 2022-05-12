@@ -19,7 +19,7 @@
             >单选数据</a-button
           >
           <a-button
-            class="m-l8"
+            class="success m-l8"
             type="primary"
             @click="
               () => {

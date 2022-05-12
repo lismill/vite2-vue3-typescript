@@ -189,7 +189,7 @@
             </a-button>
           </template>
           <a-button class="m-lr4" type="primary" html-type="submit">提交</a-button>
-          <a-button class="m-lr4" @click="resetForm">重置</a-button>
+          <a-button class="info m-lr4" type="primary" @click="resetForm">重置</a-button>
           <!-- footer -->
           <template v-if="config?.form?.operates?.footer">
             <a-button

@@ -2,6 +2,9 @@
   <div class="demo">
     <demo-svg-icon></demo-svg-icon>
     <demo-ify-icon></demo-ify-icon>
+    <a-card title="按钮" size="small" hoverable>
+      <demo-button></demo-button>
+    </a-card>
     <demo-local-storage></demo-local-storage>
     <demo-open-target-window></demo-open-target-window>
     <demo-download-file></demo-download-file>
@@ -18,6 +21,7 @@
 <script setup lang="ts">
 import DemoSvgIcon from "./svg-icon.vue";
 import DemoIfyIcon from "./ify-icon.vue";
+import DemoButton from "./button.vue";
 import DemoLocalStorage from "./local-storage.vue";
 import DemoDayjs from "./dayjs.vue";
 import DemoOpenTargetWindow from "./open-target-window.vue";

@@ -6,6 +6,7 @@ export default {
   footerTips: "这是底部提示信息，支持 <span class='color-danger'>HTML</span> 语法",
   data: [{}, {}],
   border: true,
+  borderColor: "#e74e3d",
   columns: [
     {
       title: "#",

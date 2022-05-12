@@ -3,23 +3,20 @@
     v-if="deepConfig.data && deepConfig.columns"
     class="l-table-edit"
     :style="{
-      border: deepConfig.border ? '1px solid #1a73e8' : '',
+      border: deepConfig.border
+        ? `${deepConfig?.borderColor ? `1px solid ${deepConfig.borderColor}` : '1px solid #1a73e8'}`
+        : '',
       padding: deepConfig.border ? '16px' : '',
     }"
   >
     <a-form ref="formRef" :model="form">
       <!-- 添加按钮 -->
-      <a-button
-        v-if="deepConfig.headerButton !== false && !deepConfig.disabled"
-        class="m-b16 m-r8"
-        type="primary"
-        @click="addRow"
-      >
+      <a-button v-if="deepConfig.headerButton !== false && !deepConfig.disabled" class="m-b16 m-r8" @click="addRow">
         添加数据
       </a-button>
       <!-- 操作按钮 -->
-      <a-button v-if="!deepConfig.disabled" type="primary" ghost class="m-b16 m-r8" @click="onCheck">确认数据</a-button>
-      <a-button v-if="deepConfig.disabled" class="m-b16" type="primary" ghost @click="deepConfig.disabled = false">
+      <a-button v-if="!deepConfig.disabled" type="primary" class="m-b16 m-r8" @click="onCheck">确认数据</a-button>
+      <a-button v-if="deepConfig.disabled" class="success m-b16" type="primary" @click="deepConfig.disabled = false">
         编辑数据
       </a-button>
       <!-- 头部提示 -->
@@ -161,7 +158,6 @@ const onCheck = async () => {
     await formRef.value.validate();
     deepConfig.disabled = true;
     emit("update:table:edit", deepConfig.data);
-    console.log(deepConfig.data);
   } catch (error) {
     // pass
   }

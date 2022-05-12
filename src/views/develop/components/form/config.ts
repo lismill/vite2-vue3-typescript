@@ -3,8 +3,12 @@ export default {
     // disabled: true,
     // span: 24,
     operates: {
-      header: [{name: "暂存数据", others: {}}],
-      footer: [{name: "检测数据", others: {}}],
+      header: [{name: "预览数据", others: {type: "primary"}}],
+      footer: [
+        {name: "检测数据", others: {type: "primary", class: "warning"}},
+        {name: "暂存数据", others: {type: "primary", class: "success"}},
+        {name: "删除数据", others: {type: "primary", danger: true}},
+      ],
     },
     data: {},
   },

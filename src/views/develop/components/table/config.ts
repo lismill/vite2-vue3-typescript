@@ -42,7 +42,7 @@ export default {
     ],
     operates: [
       {name: "新增数据", others: {type: "primary"}},
-      {name: "导出数据", others: {type: "info"}},
+      {name: "导出数据", others: {type: "primary", class: "success"}},
       {name: "查看配置", others: {}},
     ],
   },
