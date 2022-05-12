@@ -1,14 +1,11 @@
 <template>
   <div v-if="config?.search?.forms?.length" class="table-search bg-ffffff m-b16 p-t24 p-r24">
-    <a-form ref="formRef" :model="formState">
+    <a-form ref="formRef" name="l-table-search" :model="formState">
       <a-row :gutter="24">
         <a-col
           v-for="item in config.search.forms"
           :key="item.label"
-          :xs="24"
-          :md="12"
-          :xl="8"
-          :xxl="6"
+          :span="config?.search?.span ?? 8"
           style="padding-left: 36px"
         >
           <!-- input -->
@@ -76,17 +73,19 @@ const formState: any = reactive({});
  * 表格搜索
  */
 const onChange = () => {
-  emit(
-    "update:config",
-    {
-      ...props.config,
-      search: {
-        ...props.config.search,
-        data: {
-          ...props.config.search.data,
-          ...formState,
-        },
+  let DATA = {
+    ...props.config,
+    search: {
+      ...props.config.search,
+      data: {
+        ...props.config.search.data,
+        ...formState,
       },
+    },
+  };
+  props.config.footer &&
+    (DATA = {
+      ...DATA,
       footer: {
         ...props.config.footer,
         pagination: {
@@ -94,9 +93,8 @@ const onChange = () => {
           currentPage: 1,
         },
       },
-    },
-    true,
-  );
+    });
+  emit("update:config", DATA, true);
 };
 </script>
 <style lang="scss" scoped>

@@ -31,7 +31,7 @@ import TableFooter from "./table-footer.vue";
 const props = defineProps<{
   config: any;
 }>();
-const emit = defineEmits(["click:operate"]);
+const emit = defineEmits(["click:operate", "update:config"]);
 const deepConfig = ref(props.config);
 const slots = props.config?.table?.columns?.length
   ? props.config.table.columns
@@ -51,8 +51,8 @@ const getData = async () => {
     pageSize: deepConfig.value?.footer?.pagination?.pageSize ?? 10,
   });
   deepConfig.value.table.data = res.data;
-  deepConfig.value.footer.pagination.total = res.total;
-  deepConfig.value.footer.checked = false;
+  deepConfig.value.footer && (deepConfig.value.footer.pagination.total = res.total);
+  deepConfig.value.footer && (deepConfig.value.footer.checked = false);
   loading.value = false;
 };
 
@@ -61,6 +61,7 @@ const getData = async () => {
  */
 const updateConfig = (v: any, refresh: boolean) => {
   deepConfig.value = v;
+  emit("update:config", deepConfig.value);
   refresh && props.config.request && getData();
 };
 

@@ -3,13 +3,14 @@
     v-if="config.table"
     class="table-content bg-ffffff p-16"
     :style="{
-      marginBottom: config.footer.fixed ? '62px' : '0',
+      marginBottom: config?.footer?.fixed ? '62px' : '0',
     }"
   >
     <a-table
       :data-source="config.table.data"
       :columns="config.table.columns"
       :row-selection="{
+        type: config.table?.selectedType ?? 'checkbox',
         selectedRowKeys: selectedRowKeys(),
         onChange: onChange,
       }"
@@ -46,17 +47,22 @@ const emit = defineEmits(["update:config"]);
 
 const selectedRowKeys = () => props.config.table.selectedRows.map((item: any) => item.id);
 const onChange = (selectedRowKeys: any, selectedRows: any) => {
-  emit("update:config", {
+  let DATA = {
     ...props.config,
     table: {
       ...props.config.table,
       selectedRows,
     },
-    footer: {
-      ...props.config.footer,
-      checked: selectedRows.length === props.config.table.data.length,
-    },
-  });
+  };
+  props.config.footer &&
+    (DATA = {
+      ...DATA,
+      footer: {
+        ...props.config.footer,
+        checked: selectedRows.length === props.config.table.data.length,
+      },
+    });
+  emit("update:config", DATA);
 };
 </script>
 <style lang="scss">

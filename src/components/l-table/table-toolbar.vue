@@ -38,19 +38,21 @@ const emit = defineEmits(["update:config", "click:operate"]);
 /**
  * 状态切换
  */
-const radioActive = ref(props.config?.search?.data[props.config.toolbar.statusProp]);
+const radioActive = ref(props.config?.search?.data[props.config?.toolbar?.statusProp]);
 const onChange = () => {
-  emit(
-    "update:config",
-    {
-      ...props.config,
-      search: {
-        ...props.config.search,
-        data: {
-          ...props.config.search.data,
-          [props.config.toolbar.statusProp]: radioActive.value,
-        },
+  let DATA = {
+    ...props.config,
+    search: {
+      ...props.config.search,
+      data: {
+        ...props.config.search.data,
+        [props.config.toolbar.statusProp]: radioActive.value,
       },
+    },
+  };
+  props.config.footer &&
+    (DATA = {
+      ...DATA,
       footer: {
         ...props.config.footer,
         pagination: {
@@ -58,9 +60,8 @@ const onChange = () => {
           currentPage: 1,
         },
       },
-    },
-    true,
-  );
+    });
+  emit("update:config", DATA, true);
 };
 </script>
 <style lang="scss" scoped>

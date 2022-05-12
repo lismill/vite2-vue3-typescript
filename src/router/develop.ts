@@ -50,6 +50,16 @@ export default {
           },
         },
         {
+          path: "table-choose",
+          name: "/develop/components/table-choose",
+          component: () =>
+            import(/* webpackChunkName: "develop" */ "@/views/develop/components/table-choose/index.vue"),
+          meta: {
+            title: "选择表格",
+            // icon: "bx:table",
+          },
+        },
+        {
           path: "form",
           name: "/develop/components/form",
           component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/form/index.vue"),

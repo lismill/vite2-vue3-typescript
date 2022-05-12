@@ -1,9 +1,38 @@
 <template>
   <div class="bg-ffffff p-16">
     <l-form :config="deepConfig">
-      <template #slot="{data, item}">
-        <p class="m-b8">我是自定义插槽 - {{ data[item.name] }}</p>
-        <l-table-edit :config="tableEditConfig" @update:table:edit="updateTableEdit"></l-table-edit>
+      <template #tableEdit="{data, item}">
+        <p class="m-b8">我是自定义插槽 - 编辑表格 - {{ data[item.name] }}</p>
+        <l-table-edit :config="deepTableEditConfig" @update:table:edit="updateTableEdit"></l-table-edit>
+      </template>
+      <template #tableChoose="{data, item}">
+        <p class="m-b8">我是自定义插槽 - 选择表格 - {{ data[item.name] }}</p>
+        <div class="bg-ffffff">
+          <a-button
+            type="primary"
+            @click="
+              () => {
+                deepTableChooseConfig.table.selectedType = 'radio';
+                deepTableChooseConfig.visible = true;
+              }
+            "
+            >单选数据</a-button
+          >
+          <a-button
+            class="m-l8"
+            type="primary"
+            @click="
+              () => {
+                deepTableChooseConfig.table.selectedType = 'checkbox';
+                deepTableChooseConfig.visible = true;
+              }
+            "
+            >多选数据</a-button
+          >
+          <p class="m-tb16">已选数据：</p>
+          {{ deepTableChooseConfig.table.selectedRows }}
+        </div>
+        <l-table-choose :config="deepTableChooseConfig" @update:table:choose="updateTableChoose"></l-table-choose>
       </template>
     </l-form>
   </div>
@@ -12,6 +41,8 @@
 import {ref} from "vue";
 import {notification} from "ant-design-vue";
 import config from "./config";
+import tableEditConfig from "../table-edit/config";
+import tableChooseConfig from "../table-choose/config";
 
 const deepConfig: any = ref(config);
 deepConfig.value.form.data = {
@@ -20,6 +51,9 @@ deepConfig.value.form.data = {
   switch: false,
   upload: [{name: "1"}, {name: "2"}],
 };
+
+const deepTableEditConfig = ref(tableEditConfig);
+const deepTableChooseConfig = ref(tableChooseConfig);
 
 /**
  * 可编辑表格插槽
@@ -30,69 +64,15 @@ const updateTableEdit = (data: any) => {
     description: JSON.stringify(data),
   });
 };
-const tableEditConfig = {
-  // disabled: true,
-  headerButton: true,
-  footerButton: true,
-  headerTips: "这是头部提示信息，支持 <span class='color-danger'>HTML</span> 语法",
-  footerTips: "这是底部提示信息，支持 <span class='color-danger'>HTML</span> 语法",
-  data: [{}, {}],
-  border: true,
-  columns: [
-    {
-      title: "#",
-      width: 55,
-      align: "center",
-    },
-    {
-      type: "input",
-      title: "姓名",
-      dataIndex: "name",
-      ellipsis: true,
-    },
-    {
-      type: "input",
-      title: "年龄",
-      dataIndex: "age",
-      others: {},
-      rules: [{required: true, message: "请输入年龄"}],
-    },
-    {
-      type: "date",
-      title: "日期",
-      dataIndex: "date",
-      others: {},
-    },
-    {
-      type: "daterange",
-      title: "时间范围",
-      dataIndex: "daterange",
-      others: {},
-    },
-    {
-      title: "性别",
-      dataIndex: "sex",
-      type: "select",
-      options: [
-        {label: "男", value: "1"},
-        {label: "女", value: "2"},
-        {label: "未知", value: "0"},
-      ],
-      rules: [{required: true, message: "请选择性别"}],
-      others: {},
-    },
-    {
-      type: "operate",
-      title: "操作",
-      width: 100,
-      align: "center",
-      fixed: "right",
-    },
-  ],
-  others: {
-    scroll: {x: "100%"},
-  },
+/**
+ * 可选择表格插槽
+ */
+const updateTableChoose = (data: any) => {
+  deepTableChooseConfig.value = data;
+  notification.success({
+    message: "操作提示",
+    description: JSON.stringify(data.table.selectedRows),
+  });
 };
 </script>
-
 <style lang="scss" scoped></style>

@@ -1,6 +1,6 @@
 <template>
   <div v-if="deepConfig?.sections?.length > 0 && deepConfig?.form?.data" class="l-form p-b56">
-    <a-form ref="formRef" :model="deepConfig.form.data" @finish="onFinish">
+    <a-form ref="formRef" name="l-form" :model="deepConfig.form.data" @finish="onFinish">
       <div v-for="(section, index) in deepConfig.sections" :key="index">
         <div v-if="section.title" class="title m-b24">{{ section.title }}</div>
         <a-row class="p-r32">

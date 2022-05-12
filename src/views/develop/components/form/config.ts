@@ -114,8 +114,13 @@ export default {
         },
         {
           type: "slot",
-          label: "自定义插槽",
-          name: "slot",
+          label: "可编辑表格",
+          name: "tableEdit",
+        },
+        {
+          type: "slot",
+          label: "可选择表格",
+          name: "tableChoose",
         },
       ],
     },

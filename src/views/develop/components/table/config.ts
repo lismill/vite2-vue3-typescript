@@ -4,6 +4,7 @@ export default {
   request: getTableList,
   // 搜索栏
   search: {
+    span: 6,
     data: {
       status: "1",
     },
