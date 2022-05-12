@@ -1,5 +1,5 @@
 <template>
-  <a-card title="LocalStorage" size="small" hoverable>
+  <a-card title="本地存储 - localstorage" size="small" hoverable>
     <a-space direction="vertical">
       <p><a-button size="small" @click="get">获取</a-button> storage.get("xxx")</p>
       <p><a-button size="small" @click="set">设置</a-button> storage.set("xxx", {a: 1, b: 2})</p>

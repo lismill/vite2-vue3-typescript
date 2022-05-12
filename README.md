@@ -288,7 +288,8 @@ notification.open({
 
 ## 配置基础框架结构
 
-![基础框架结构](https://i.postimg.cc/T2zdcK7v/dashboard.png)
+![基础框架结构](https://i.postimg.cc/yxz0nNRb/dashboard.png)
+![基础框架结构](https://i.postimg.cc/tCYM8Snt/9.png)
 
 ## 配置主题颜色
 

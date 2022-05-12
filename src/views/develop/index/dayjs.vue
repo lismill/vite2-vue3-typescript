@@ -1,5 +1,5 @@
 <template>
-  <a-card title="Dayjs" size="small" hoverable>
+  <a-card title="日期插件 - dayjs" size="small" hoverable>
     <a-space direction="vertical">
       <p>https://dayjs.fenxianglu.cn/category/</p>
       <p>{{ day }}</p>

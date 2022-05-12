@@ -1,5 +1,5 @@
 <template>
-  <a-card title="Upload" size="small" hoverable>
+  <a-card title="上传文件" size="small" hoverable>
     <l-upload-file :config="config"></l-upload-file>
   </a-card>
 </template>
