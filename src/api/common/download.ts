@@ -1,9 +1,10 @@
 /**
- * 下载文件 - 利用base64
- * @param { String } path - 下载地址
- * @param { String } name - 下载文件名称
+ * 下载文件 - 根据文件地址下载
+ * @param path
+ * @param name
+ * @returns
  */
-export const downloadFile = (path: string, name?: string) => {
+export const downloadByUrl = (path: string, name?: string) => {
   return new Promise((resolve) => {
     const xhr = new XMLHttpRequest();
     xhr.open("get", path);
@@ -28,4 +29,24 @@ export const downloadFile = (path: string, name?: string) => {
   });
 };
 
-export default {};
+/**
+ * 文件流下载
+ * @param content
+ * @param name
+ */
+export const downloadByData = (content: string, name: string) => {
+  const blobData = [content];
+  const blob = new Blob(blobData, {type: "application/octet-stream"});
+  const blobURL = window.URL.createObjectURL(blob);
+  const tempLink = document.createElement("a");
+  tempLink.style.display = "none";
+  tempLink.href = blobURL;
+  tempLink.setAttribute("download", name);
+  if (typeof tempLink.download === "undefined") {
+    tempLink.setAttribute("target", "_blank");
+  }
+  document.body.appendChild(tempLink);
+  tempLink.click();
+  document.body.removeChild(tempLink);
+  window.URL.revokeObjectURL(blobURL);
+};
