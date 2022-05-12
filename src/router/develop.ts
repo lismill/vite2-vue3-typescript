@@ -75,6 +75,14 @@ export default {
             title: "JSX",
           },
         },
+        {
+          path: "iframe",
+          name: "/develop/components/iframe",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/iframe/index.vue"),
+          meta: {
+            title: "iframe",
+          },
+        },
       ],
     },
   ],

@@ -5,7 +5,7 @@
         <a-col
           v-for="item in config.search.forms"
           :key="item.label"
-          :span="config?.search?.span ?? 8"
+          v-bind="config?.search?.span ? config.search.span : {span: 6}"
           style="padding-left: 36px"
         >
           <!-- input -->

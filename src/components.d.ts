@@ -48,6 +48,7 @@ declare module '@vue/runtime-core' {
     FormInfo: typeof import('./components/l-form/form-info.vue')['default']
     FormTooltip: typeof import('./components/l-form/form-tooltip.vue')['default']
     LForm: typeof import('./components/l-form/index.vue')['default']
+    LIframe: typeof import('./components/l-iframe/index.vue')['default']
     LIfyIcon: typeof import('./components/l-ify-icon/index.vue')['default']
     LSvgIcon: typeof import('./components/l-svg-icon/index.vue')['default']
     LTable: typeof import('./components/l-table/index.vue')['default']

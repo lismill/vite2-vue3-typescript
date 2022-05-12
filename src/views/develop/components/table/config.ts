@@ -4,7 +4,12 @@ export default {
   request: getTableList,
   // 搜索栏
   search: {
-    span: 6,
+    span: {
+      xs: 24,
+      sm: 12,
+      lg: 8,
+      xl: 6,
+    },
     data: {
       status: "1",
     },
