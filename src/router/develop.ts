@@ -67,6 +67,14 @@ export default {
             title: "表单组件",
           },
         },
+        {
+          path: "jsx",
+          name: "/develop/components/jsx",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/tsx"),
+          meta: {
+            title: "JSX",
+          },
+        },
       ],
     },
   ],

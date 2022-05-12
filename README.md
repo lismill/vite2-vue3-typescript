@@ -374,6 +374,42 @@ setTimeout(() => (loading.value = false), 60000);
 }
 ```
 
+## 配置 TSX 支持
+
+### 安装
+
+`npm install --save-dev @vitejs/plugin-vue-jsx`
+
+### 配置
+
+`vite.config.ts`
+
+```
+import vueJsx from "@vitejs/plugin-vue-jsx";
+
+// ...
+
+plugins.push(
+  vueJsx()
+);
+```
+
+### 使用
+
+`index.tsx`
+
+```
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  setup() {
+    return () => <div class="tsx bg-ffffff p-16">
+      这是一个 tsx 文件
+    </div>;
+  },
+});
+```
+
 ## 封装 localStorage
 
 ### 配置

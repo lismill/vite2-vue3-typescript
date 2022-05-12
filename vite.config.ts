@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {defineConfig, loadEnv} from "vite";
 import vue from "@vitejs/plugin-vue";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 import {resolve} from "path";
 import eslintPlugin from "vite-plugin-eslint";
 import {createSvgIconsPlugin} from "vite-plugin-svg-icons";
@@ -62,6 +63,8 @@ const configPlugins = ({VITE_BUILD_USE_VISUALIZER, VITE_BUILD_USE_COMPRESSION, V
           mockPath: "/src/mock",
         }),
       );
+    // JSX
+    plugins.push(vueJsx());
   }
   return plugins;
 };
