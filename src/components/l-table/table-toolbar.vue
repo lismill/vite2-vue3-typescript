@@ -1,4 +1,5 @@
 <template>
+  <!-- header -->
   <div
     v-if="config?.toolbar?.status || config?.toolbar?.operates"
     class="table-toolbar flex bg-ffffff p-t16 p-r16 p-l16"
@@ -26,6 +27,14 @@
       </a-button>
     </div>
   </div>
+  <!-- footer -->
+  <a-row v-if="config?.toolbar?.tool" type="flex" justify="end" class="p-t16 p-lr16 p-l16 bg-ffffff">
+    <a-col>
+      <!-- 刷新 -->
+      <!-- 密度 -->
+      <!-- 选择列 -->
+    </a-col>
+  </a-row>
 </template>
 <script setup lang="ts">
 import {ref} from "vue";
