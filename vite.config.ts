@@ -95,5 +95,11 @@ export default ({mode, command}) => {
     },
     // 使用插件
     plugins: [vue(), ...configPlugins(LOAD_ENV)],
+    // 扩展esbuild
+    esbuild: {
+      jsxFactory: "h",
+      jsxFragment: "Fragment",
+      jsxInject: "import { h } from 'vue';",
+    },
   });
 };
