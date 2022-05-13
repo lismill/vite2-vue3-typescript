@@ -11,6 +11,8 @@
         <a-layout-header>
           <framework-header v-model:collapsed="collapsed"></framework-header>
         </a-layout-header>
+        <!-- framework-tabs -->
+        <framework-tabs></framework-tabs>
         <!-- a-layout-content -->
         <a-layout-content>
           <div class="m-r14">
@@ -28,6 +30,7 @@ import storage from "@/utils/local-storage";
 
 import FrameworkSider from "./framework-sider.vue";
 import FrameworkHeader from "./framework-header.vue";
+import FrameworkTabs from "./framework-tabs.vue";
 import FrameworkContent from "./index.vue";
 
 const collapsed = ref(storage.get(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_COLLAPSED`) ?? true);

@@ -37,6 +37,7 @@ export default {
           component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/table/index.vue"),
           meta: {
             title: "基础表格",
+            keepAlive: true,
             // icon: "bx:table",
           },
         },
@@ -46,6 +47,7 @@ export default {
           component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/table-edit/index.vue"),
           meta: {
             title: "编辑表格",
+            keepAlive: true,
             // icon: "bx:table",
           },
         },
