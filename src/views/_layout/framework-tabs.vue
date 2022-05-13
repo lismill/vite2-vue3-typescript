@@ -7,6 +7,16 @@
         :tab="tab.title"
         :closable="index !== 0"
       ></a-tab-pane>
+      <template #rightExtra>
+        <div class="toolbar p-r16">
+          <span title="刷新页面" @click="reload">
+            <l-ify-icon name="zondicons:reload" size="16"></l-ify-icon>
+          </span>
+          <span title="全部关闭" @click="closeAll">
+            <l-ify-icon name="mdi:window-close" size="17" style="top: 4px"></l-ify-icon>
+          </span>
+        </div>
+      </template>
     </a-tabs>
   </div>
 </template>
@@ -23,10 +33,8 @@ const activeKey = ref(USE_STORE_TABS.tabs[0].path);
 
 const tabClick = (path: any) => ROUTER.push(path);
 const edit = (path: any) => {
-  USE_STORE_TABS.removeTabs(path);
-  USE_STORE_TABS.tabs.length === 1
-    ? ROUTER.push(USE_STORE_TABS.tabs[0].path) && USE_STORE_TABS.resetTabs()
-    : ROUTER.back();
+  const LAST_TABS = USE_STORE_TABS.removeTabs(path);
+  USE_STORE_TABS.tabs.length === 1 ? ROUTER.push(USE_STORE_TABS.tabs[0].path) : ROUTER.push(LAST_TABS);
 };
 const changeTabs = () => {
   USE_STORE_TABS.changeTabs({
@@ -34,6 +42,12 @@ const changeTabs = () => {
     title: ROUTE.meta.title,
   });
   activeKey.value = ROUTE.path;
+};
+
+const reload = () => ROUTER.go(0);
+const closeAll = () => {
+  USE_STORE_TABS.resetTabs();
+  ROUTER.push(USE_STORE_TABS.tabs[0].path);
 };
 
 watch(
@@ -64,6 +78,16 @@ onMounted(() => changeTabs());
   .ant-tabs-tab-remove {
     margin-left: 1px;
     font-size: 11px;
+  }
+}
+
+.toolbar {
+  span {
+    cursor: pointer;
+    padding: 4px;
+    &:hover {
+      opacity: 0.85;
+    }
   }
 }
 </style>

@@ -12,7 +12,7 @@
       @change="handleChange"
     >
       <div v-if="fileList.length < config.maxLength">
-        <l-ify-icon name="carbon:add" size="36" color="#999999" style="position: relative; top: 3px"></l-ify-icon>
+        <l-ify-icon name="carbon:add" size="36" color="#999999"></l-ify-icon>
       </div>
     </a-upload>
     <a-modal :visible="visible" :title="title" :footer="null" @cancel="handleCancel">
