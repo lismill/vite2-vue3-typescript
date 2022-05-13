@@ -16,6 +16,7 @@
       <demo-table-choose></demo-table-choose>
     </a-card>
     <demo-dayjs></demo-dayjs>
+    <demo-vuedraggable></demo-vuedraggable>
   </div>
 </template>
 <script setup lang="ts">
@@ -29,6 +30,7 @@ import DemoDownloadFile from "./download-file.vue";
 import DemoUploadFile from "./upload-file.vue";
 import DemoTableEdit from "../components/table-edit/index.vue";
 import DemoTableChoose from "../components/table-choose/index.vue";
+import DemoVuedraggable from "./vuedraggable.vue";
 </script>
 
 <style lang="scss" scoped>

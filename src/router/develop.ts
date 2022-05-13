@@ -85,6 +85,15 @@ export default {
             title: "iframe",
           },
         },
+        {
+          path: "vuedraggable",
+          name: "/develop/components/vuedraggable",
+          component: () =>
+            import(/* webpackChunkName: "develop" */ "@/views/develop/components/vuedraggable/index.vue"),
+          meta: {
+            title: "vuedraggable",
+          },
+        },
       ],
     },
   ],
