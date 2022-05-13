@@ -24,7 +24,9 @@ const activeKey = ref(USE_STORE_TABS.tabs[0].path);
 const tabClick = (path: any) => ROUTER.push(path);
 const edit = (path: any) => {
   USE_STORE_TABS.removeTabs(path);
-  path === ROUTE.path && ROUTER.back();
+  USE_STORE_TABS.tabs.length === 1
+    ? ROUTER.push(USE_STORE_TABS.tabs[0].path) && USE_STORE_TABS.resetTabs()
+    : ROUTER.back();
 };
 const changeTabs = () => {
   USE_STORE_TABS.changeTabs({

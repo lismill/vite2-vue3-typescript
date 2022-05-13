@@ -13,6 +13,14 @@ const useStoreTabs = defineStore("STORE_TABS)", {
     };
   },
   actions: {
+    resetTabs() {
+      this.tabs = storage.get(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_TABS`) ?? [
+        {
+          path: "/dashboard/index",
+          title: "控制台",
+        },
+      ];
+    },
     changeTabs(tab: any) {
       if (!this.tabs.find((item: any) => item.path === tab.path)) {
         this.tabs.push(tab);

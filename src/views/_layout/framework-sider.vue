@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
-    <l-ify-icon name="ph:codesandbox-logo-fill" size="26" style="position: relative; top: 8px; left: -3px"></l-ify-icon>
-    <span v-if="!collapsed"> | &nbsp;&nbsp;后台管理中心</span>
+    <l-ify-icon name="healthicons:l-negative" size="19" style="position: relative; top: 8px; left: 1px"></l-ify-icon>
+    <!-- <span v-if="!collapsed">后台管理中心</span> -->
   </div>
   <a-menu v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" @click="jump">
     <template v-for="menu in SIDER_ROUTES">
