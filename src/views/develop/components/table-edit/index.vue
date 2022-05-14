@@ -3,7 +3,6 @@
     <a-space>
       <a-button @click="() => (deepConfig.border = !deepConfig.border)">显示/隐藏边框</a-button>
       <a-input v-model:value="deepConfig.borderColor" placeholder="设置边框颜色"></a-input>
-      <a-button type="primary">确定</a-button>
     </a-space>
   </div>
   <div class="bg-ffffff p-16">
