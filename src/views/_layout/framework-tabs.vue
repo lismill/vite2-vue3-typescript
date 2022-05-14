@@ -12,7 +12,7 @@
           <span title="刷新页面" @click="reload">
             <l-ify-icon name="zondicons:reload" size="16"></l-ify-icon>
           </span>
-          <span title="全部关闭" @click="closeAll">
+          <span v-if="USE_STORE_TABS.tabs.length > 1" title="全部关闭" @click="closeAll">
             <l-ify-icon name="mdi:window-close" size="17" style="top: 4px"></l-ify-icon>
           </span>
         </div>
