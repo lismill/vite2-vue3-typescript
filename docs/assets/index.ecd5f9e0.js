@@ -1,1 +1,0 @@
-import{q as a,u as n,o,am as r,aH as t}from"./index.96714328.js";const p=a({setup(c){const e=n();return(_,f)=>{const s=t;return o(),r(s,{ref_key:"iframe",ref:e,class:"l-iframe",src:"https://vitejs.dev"},null,512)}}});export{p as default};
