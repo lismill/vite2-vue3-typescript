@@ -99,11 +99,11 @@ const onChange = () => {
 </script>
 <style lang="scss" scoped>
 .table-search {
-  :deep .ant-form-horizontal .ant-form-item-label {
+  :deep(.ant-form-horizontal .ant-form-item-label) {
     width: 90px !important;
     text-align: right !important;
   }
-  :deep .ant-form-item-label > label {
+  :deep(.ant-form-item-label > label) {
     font-size: 13px !important;
   }
 }

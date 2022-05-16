@@ -59,26 +59,24 @@ onMounted(() => changeTabs());
 </script>
 
 <style lang="scss" scoped>
-.framework-tabs :deep {
-  .ant-tabs-top > .ant-tabs-nav,
-  .ant-tabs-bottom > .ant-tabs-nav,
-  .ant-tabs-top > div > .ant-tabs-nav,
-  .ant-tabs-bottom > div > .ant-tabs-nav {
-    margin: 2px 0 0 0;
-  }
+.framework-tabs
+  :deep(.ant-tabs-top > .ant-tabs-nav, .ant-tabs-bottom > .ant-tabs-nav, .ant-tabs-top
+    > div
+    > .ant-tabs-nav, .ant-tabs-bottom > div > .ant-tabs-nav) {
+  margin: 2px 0 0 0;
+}
 
-  .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab,
-  .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab,
-  .ant-tabs-top > .ant-tabs-nav::before,
-  .ant-tabs-bottom > .ant-tabs-nav::before,
-  .ant-tabs-top > div > .ant-tabs-nav::before,
-  .ant-tabs-bottom > div > .ant-tabs-nav::before {
-    border-bottom: 1px solid rgba(240, 242, 245, 1);
-  }
-  .ant-tabs-tab-remove {
-    margin-left: 1px;
-    font-size: 11px;
-  }
+.framework-tabs
+  :deep(.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-top
+    > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top
+    > div
+    > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before) {
+  border-bottom: 1px solid rgba(240, 242, 245, 1);
+}
+
+.framework-tabs :deep(.ant-tabs-tab-remove) {
+  margin-left: 1px;
+  font-size: 11px;
 }
 
 .toolbar {

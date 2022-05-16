@@ -1018,6 +1018,107 @@ const day = dayjs().isSameOrAfter('2022-12-12', 'year');
 // ...
 ```
 
+## 配置可视化图表库 - ECharts
+
+### 安装
+
+`npm install echarts --save`
+
+### 配置
+
+`src/components/l-echarts/index.vue`
+
+```
+<template>
+  <div id="echarts" ref="chart"></div>
+</template>
+
+<script setup lang="ts">
+import {ref, onMounted} from "vue";
+import * as echarts from "echarts";
+import type {EChartsType, EChartsOption} from "echarts";
+
+const props = defineProps<{option: EChartsOption}>();
+
+const chart = ref<HTMLElement>();
+let myEcharts: EChartsType | null = null;
+
+const init = () => {
+  myEcharts = echarts.init(chart.value as HTMLElement);
+  myEcharts.setOption(props.option);
+  window.onresize = () => (myEcharts as EChartsType).resize();
+};
+
+onMounted(() => init());
+</script>
+
+<style lang="scss" scoped>
+#echarts {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+</style>
+```
+
+### 使用
+
+`index.vue`
+
+```
+<template>
+  <div style="height: 260px">
+    <l-echarts :option="option"></l-echarts>
+  </div>
+</template>
+
+<script setup lang="ts">
+import type {EChartsOption} from "echarts";
+
+const option: EChartsOption = {
+  xAxis: {},
+  yAxis: {},
+  grid: {
+    left: "2%",
+    right: "2%",
+    top: "2%",
+    bottom: "2%",
+    containLabel: true,
+  },
+  series: [
+    {
+      symbolSize: 20,
+      data: [
+        [10.0, 8.04],
+        [8.07, 6.95],
+        [13.0, 7.58],
+        [9.05, 8.81],
+        [11.0, 8.33],
+        [14.0, 7.66],
+        [13.4, 6.81],
+        [10.0, 6.33],
+        [14.0, 8.96],
+        [12.5, 6.82],
+        [9.15, 7.2],
+        [11.5, 7.2],
+        [3.03, 4.23],
+        [12.2, 7.83],
+        [2.02, 4.47],
+        [1.05, 3.33],
+        [4.05, 4.96],
+        [6.03, 7.24],
+        [12.0, 6.26],
+        [12.0, 8.84],
+        [7.08, 5.82],
+        [5.02, 5.68],
+      ],
+      type: "scatter",
+    },
+  ],
+};
+</script>
+```
+
 ## 配置可拖拽组件 - vuedraggable@next
 
 ### 安装

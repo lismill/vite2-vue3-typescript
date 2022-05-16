@@ -254,15 +254,15 @@ watch(
 }
 .l-form {
   min-height: calc(100vh - 130px);
-  :deep .ant-form-horizontal .ant-form-item-label {
+  :deep(.ant-form-horizontal .ant-form-item-label) {
     width: 120px;
     padding-right: 8px;
     text-align: right;
   }
-  // :deep .ant-form-horizontal .ant-form-item-control {
+  // :deep(.ant-form-horizontal .ant-form-item-control) {
   //   max-width: 560px;
   // }
-  :deep .ant-form-item .ant-input-textarea-show-count::after {
+  :deep(.ant-form-item .ant-input-textarea-show-count::after) {
     position: relative;
     top: -26px;
     right: 8px;

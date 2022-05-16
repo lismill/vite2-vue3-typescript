@@ -34,12 +34,12 @@
       </a-card>
       <a-row type="flex" :gutter="16">
         <a-col flex="auto" class="m-t16">
-          <a-card title="数据趋势" :bordered="false">
-            <a-skeleton :active="true" style="margin-top: -16px" />
+          <a-card title="散点图" :bordered="false">
+            <chart1></chart1>
           </a-card>
           <div class="m-t16">
-            <a-card title="加载状态" :bordered="false">
-              <a-skeleton :active="true" style="margin-top: -16px" />
+            <a-card title="折线图" :bordered="false">
+              <chart2></chart2>
             </a-card>
           </div>
         </a-col>
@@ -69,13 +69,15 @@
 </template>
 <script setup lang="ts">
 import {ref} from "vue";
+import Chart1 from "./chart1.vue";
+import Chart2 from "./chart2.vue";
 
 const loading = ref(true);
 setTimeout(() => (loading.value = false), 600);
 </script>
 
 <style scoped>
-.dashboard :deep .ant-skeleton-element .ant-skeleton-button {
+.dashboard :deep(.ant-skeleton-element .ant-skeleton-button) {
   height: 56px;
 }
 </style>

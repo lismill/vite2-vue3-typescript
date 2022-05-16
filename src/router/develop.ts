@@ -94,6 +94,14 @@ export default {
             title: "vuedraggable",
           },
         },
+        {
+          path: "echarts",
+          name: "/develop/components/echarts",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/echarts/index.vue"),
+          meta: {
+            title: "ECharts",
+          },
+        },
       ],
     },
   ],

@@ -78,7 +78,7 @@ onMounted(() => props.config.request && getData());
 
 <style lang="scss" scoped>
 .l-table {
-  :deep .ant-spin-nested-loading > div > .ant-spin {
+  :deep(.ant-spin-nested-loading > div > .ant-spin) {
     background-color: rgba(255, 255, 255, 0.5);
   }
 }

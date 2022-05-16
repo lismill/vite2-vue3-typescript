@@ -181,10 +181,10 @@ const onCheck = async () => {
     cursor: not-allowed;
     color: #999999;
   }
-  :deep .ant-form-item {
+  :deep(.ant-form-item) {
     margin-bottom: 0;
   }
-  :deep .ant-form-item-with-help .ant-form-item-explain {
+  :deep(.ant-form-item-with-help .ant-form-item-explain) {
     position: absolute;
     top: 30px;
     font-size: 12px;
