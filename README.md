@@ -1119,6 +1119,148 @@ const option: EChartsOption = {
 </script>
 ```
 
+## 配置生成二维码图片和下载 - qrcode
+
+### 安装
+
+`npm install --save qrcode`
+
+### 配置
+
+`src/components/l-qrcode/index.vue`
+
+```
+<template>
+  <div v-if="type === 'canvas'" :id="ID" class="qrcode qrcode-canvas"></div>
+  <div v-else class="qrcode qrcode-image">
+    <img :id="ID" :style="{width: `${width}px`, height: `${width}px`}" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import {ref, onMounted} from "vue";
+import QRCode from "qrcode";
+
+interface IQRCode {
+  type?: "canvas" | "image";
+  text: string;
+  width?: string;
+  dark?: string;
+  light?: string;
+}
+
+const emit = defineEmits(["get:canvas:url", "get:image:url"]);
+const props = withDefaults(defineProps<IQRCode>(), {
+  type: "canvas",
+  text: "",
+  width: "160",
+  dark: "#000000",
+  light: "#ffffff",
+});
+// 动态节点id，防止多个覆盖显示
+const ID = Math.random().toString(36).substr(2);
+// 图片地址
+const DATA_URL = ref("");
+
+/**
+ * 初始化
+ * 根据配置显示 canvas 还是 image
+ */
+const init = () => {
+  const OPTION = {
+    margin: 0,
+    width: Number(props.width),
+    color: {
+      dark: props.dark,
+      light: props.light,
+    },
+  };
+  if (props.type === "canvas") {
+    QRCode.toCanvas(props.text, OPTION, (err: any, canvas: HTMLCanvasElement) => {
+      if (err) throw err;
+      const container: HTMLElement | null = document.getElementById(ID);
+      (container as HTMLElement).appendChild(canvas);
+      emit("get:canvas:url", canvas);
+    });
+  } else if (props.type === "image") {
+    QRCode.toDataURL(props.text, OPTION, (err: any, url: any) => {
+      if (err) throw err;
+      const image: HTMLElement | null = document.getElementById(ID);
+      (image as HTMLImageElement).src = url;
+      DATA_URL.value = url;
+      emit("get:image:url", DATA_URL.value);
+    });
+  }
+};
+onMounted(() => init());
+</script>
+```
+
+### 使用
+
+`index.vue`
+
+```
+<template>
+  <div class="bg-ffffff p-16">
+    <!--
+      type?: "canvas" | "image";
+      text: string;
+      width?: string;
+      dark?: string;
+      light?: string;
+     -->
+    <a-row type="flex" justify="space-around">
+      <a-col :span="4">
+        <h3>Canvas: 111111</h3>
+        <l-qrcode text="Canvas: 111111" @get:canvas:url="getCanvasUrl1"></l-qrcode>
+        <a-button type="primary" class="m-t16" @click="handleDownloadByCanvas1">下载</a-button>
+      </a-col>
+      <a-col :span="4">
+        <h3>Canvas: 222222</h3>
+        <l-qrcode text="Canvas: 222222" @get:canvas:url="getCanvasUrl2"></l-qrcode>
+        <a-button type="primary" class="m-t16" @click="handleDownloadByCanvas2">下载</a-button>
+      </a-col>
+      <a-col :span="4">
+        <h3>Image: 111111</h3>
+        <l-qrcode type="image" text="Image: 111111" @get:image:url="getImageUrl1"></l-qrcode>
+        <a-button type="primary" class="m-t16" @click="handledownloadByBase641">下载</a-button>
+      </a-col>
+      <a-col :span="4">
+        <h3>Image: 222222</h3>
+        <l-qrcode type="image" text="Image: 222222" @get:image:url="getImageUrl2"></l-qrcode>
+        <a-button type="primary" class="m-t16" @click="handledownloadByBase642">下载</a-button>
+      </a-col>
+    </a-row>
+  </div>
+</template>
+
+<script setup lang="ts">
+import {ref} from "vue";
+import {downloadByBase64, downloadByCanvas} from "@/api/common/download";
+
+/**
+ * 显示图片和下载图片
+ */
+const imageUrl1 = ref("");
+const imageUrl2 = ref("");
+const getImageUrl1 = (data: string) => (imageUrl1.value = data);
+const getImageUrl2 = (data: string) => (imageUrl2.value = data);
+const handledownloadByBase641 = () => downloadByBase64(imageUrl1.value, "二维码.png");
+const handledownloadByBase642 = () => downloadByBase64(imageUrl2.value, "二维码.png");
+
+/**
+ * 显示 canvas 和下载 canvas
+ */
+const canvasUrl1 = ref<HTMLCanvasElement>();
+const canvasUrl2 = ref<HTMLCanvasElement>();
+const getCanvasUrl1 = (data: HTMLCanvasElement) => (canvasUrl1.value = data);
+const getCanvasUrl2 = (data: HTMLCanvasElement) => (canvasUrl2.value = data);
+const handleDownloadByCanvas1 = () => downloadByCanvas(canvasUrl1.value, "二维码.png");
+const handleDownloadByCanvas2 = () => downloadByCanvas(canvasUrl2.value, "二维码.png");
+</script>
+```
+
 ## 配置可拖拽组件 - vuedraggable@next
 
 ### 安装

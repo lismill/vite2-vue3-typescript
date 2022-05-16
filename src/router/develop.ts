@@ -102,6 +102,14 @@ export default {
             title: "ECharts",
           },
         },
+        {
+          path: "qrcode",
+          name: "/develop/components/qrcode",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/qrcode/index.vue"),
+          meta: {
+            title: "QRCode",
+          },
+        },
       ],
     },
   ],
