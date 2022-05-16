@@ -38,6 +38,10 @@ const router = createRouter({
    */
   history: createWebHashHistory(),
   routes,
+  scrollBehavior() {
+    const CONTENT = document.querySelector(".ant-layout-content");
+    CONTENT?.scrollTo(0, 0);
+  },
 });
 
 router.beforeEach((to, from, next) => {
