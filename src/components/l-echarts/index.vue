@@ -15,7 +15,7 @@ let myEcharts: EChartsType | null = null;
 const init = () => {
   myEcharts = echarts.init(chart.value as HTMLElement);
   myEcharts.setOption(props.option);
-  window.onresize = () => (myEcharts as EChartsType).resize();
+  window.addEventListener("resize", () => (myEcharts as EChartsType).resize());
 };
 
 onMounted(() => init());
