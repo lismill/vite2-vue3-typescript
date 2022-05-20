@@ -32,6 +32,9 @@ import DemoTableEdit from "../components/table-edit/index.vue";
 import DemoTableChoose from "../components/table-choose/index.vue";
 import DemoVuedraggable from "./vuedraggable.vue";
 </script>
+<script lang="ts">
+export default {name: "DevelopIndex"};
+</script>
 
 <style lang="scss" scoped>
 .ant-card {

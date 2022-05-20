@@ -25,29 +25,62 @@
 import {onMounted, ref, watch} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import useStoreTabs from "@/stores/tabs";
+import useStoreKeepalive from "@/stores/keepalive";
 
 const ROUTE = useRoute();
 const ROUTER = useRouter();
 const USE_STORE_TABS = useStoreTabs();
+const USE_STORE_KEEPALIVE = useStoreKeepalive();
 const activeKey = ref(USE_STORE_TABS.tabs[0].path);
 
-const tabClick = (path: any) => ROUTER.push(path);
-const edit = (path: any) => {
-  const LAST_TABS = USE_STORE_TABS.removeTabs(path);
-  USE_STORE_TABS.tabs.length === 1 ? ROUTER.push(USE_STORE_TABS.tabs[0].path) : ROUTER.push(LAST_TABS);
-};
-const changeTabs = () => {
-  USE_STORE_TABS.changeTabs({
-    path: ROUTE.path,
-    title: ROUTE.meta.title,
-  });
-  activeKey.value = ROUTE.path;
+// 清除 keepalive
+const removeKeepAlive = () => {
+  ROUTE.meta?.keepAlive && USE_STORE_KEEPALIVE.removeKeepAlives(ROUTE.meta.keepAlive as string);
 };
 
-const reload = () => ROUTER.go(0);
+// 添加 keepalive
+const addKeepAlive = () => {
+  ROUTE.meta?.keepAlive && USE_STORE_KEEPALIVE.addKeepAlives(ROUTE.meta.keepAlive as string);
+};
+
+// 切换标签
+const tabClick = (path: any) => ROUTER.push(path);
+
+// 删除标签
+const edit = (path: any) => {
+  // 清除 tab
+  if (ROUTE.path === path) {
+    const LAST_TABS = USE_STORE_TABS.removeTabs(path);
+    USE_STORE_TABS.tabs.length === 1 ? ROUTER.push(USE_STORE_TABS.tabs[0].path) : ROUTER.push(LAST_TABS);
+  } else {
+    USE_STORE_TABS.removeTabs(path);
+    USE_STORE_TABS.tabs.length === 1 && ROUTER.push(USE_STORE_TABS.tabs[0].path);
+  }
+  // 清除 keepalive
+  removeKeepAlive();
+};
+
+// 刷新路由
+const reload = () => {
+  removeKeepAlive();
+  ROUTER.push(`/framework/redirect?keepalive=${ROUTE.meta.keepAlive}`);
+};
+
+// 关闭全部标签
 const closeAll = () => {
   USE_STORE_TABS.resetTabs();
   ROUTER.push(USE_STORE_TABS.tabs[0].path);
+};
+
+// 设置标签页
+const changeTabs = () => {
+  USE_STORE_TABS.changeTabs({
+    path: ROUTE.path,
+    title: ROUTE.meta?.title,
+    hidden: ROUTE.meta?.hidden ?? false,
+  });
+  activeKey.value = ROUTE.path;
+  addKeepAlive();
 };
 
 watch(

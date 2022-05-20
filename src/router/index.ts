@@ -52,7 +52,22 @@ router.beforeEach((to, from, next) => {
 });
 
 // 左侧菜单
-const FILTER_PATH = ["/", "/login", "/:catchAll(.*)"];
-export const SIDER_ROUTES = router.options.routes.filter((item) => !FILTER_PATH.includes(item.path));
+export const SIDER_ROUTES = (() => {
+  const FILTER_PATH = ["/", "/login", "/:catchAll(.*)"];
+  return router.options.routes.filter((item) => !FILTER_PATH.includes(item.path));
+})();
+
+// 缓存的菜单
+export const KEEPALIVE_ROUTES = (() => {
+  const KEEPALIVES: Array<string> = ["Layout"];
+  function reduceKeepAlive(routes: any) {
+    routes.forEach((item: any) => {
+      item?.meta?.keepAlive && KEEPALIVES.push(item.meta.keepAlive);
+      item?.children?.length && reduceKeepAlive(item.children ?? []);
+    });
+  }
+  reduceKeepAlive(router.options.routes);
+  return KEEPALIVES;
+})();
 
 export default router;

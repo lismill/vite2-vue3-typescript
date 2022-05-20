@@ -23,7 +23,7 @@ const useStoreTabs = defineStore("STORE_TABS)", {
       this.tabs = storage.get(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_TABS`);
     },
     changeTabs(tab: any) {
-      if (!this.tabs.find((item: any) => item.path === tab.path)) {
+      if (!tab.hidden && !this.tabs.find((item: any) => item.path === tab.path)) {
         this.tabs.push(tab);
         this.setLocalstorage();
       }

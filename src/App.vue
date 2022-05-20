@@ -6,7 +6,7 @@
         <p>加载中...</p>
       </div>
     </div>
-    <RouterView v-else></RouterView>
+    <router-view v-else></router-view>
   </a-config-provider>
 </template>
 

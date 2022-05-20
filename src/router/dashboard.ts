@@ -12,7 +12,7 @@ export default {
       component: () => import(/* webpackChunkName: "dashboard" */ "@/views/dashboard/index.vue"),
       meta: {
         title: "控制台",
-        keepAlive: true,
+        keepAlive: "DashboardIndex",
         icon: "dashicons:dashboard",
       },
     },

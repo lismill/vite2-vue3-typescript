@@ -7,7 +7,7 @@
     <template v-for="menu in SIDER_ROUTES">
       <!-- 一级菜单 - 无子菜单 -->
       <template v-if="menu.children?.length && menu.children?.length === 1">
-        <a-menu-item :key="menu.children[0].name">
+        <a-menu-item v-if="!menu.children[0]?.meta?.hidden" :key="menu.children[0].name">
           <template v-if="menu.children[0].meta?.icon" #icon>
             <l-ify-icon :name="menu.children[0].meta?.icon" size="21"></l-ify-icon>
           </template>
@@ -16,7 +16,7 @@
       </template>
       <!-- 一级菜单 - 有子菜单 -->
       <template v-else>
-        <a-sub-menu :key="menu.name">
+        <a-sub-menu v-if="!menu?.meta?.hidden" :key="menu.name">
           <template v-if="menu.meta?.icon" #icon>
             <l-ify-icon :name="menu.meta?.icon" size="21"></l-ify-icon>
           </template>
@@ -25,7 +25,7 @@
           <template v-for="subMenu in menu.children">
             <!-- 二级菜单 - 无子菜单 -->
             <template v-if="!subMenu.children?.length">
-              <a-menu-item :key="subMenu.name">
+              <a-menu-item v-if="!subMenu?.meta?.hidden" :key="subMenu.name">
                 <template v-if="subMenu.meta?.icon" #icon>
                   <l-ify-icon :name="subMenu.meta?.icon" size="21"></l-ify-icon>
                 </template>
@@ -35,18 +35,20 @@
 
             <!-- 二级菜单 - 有子菜单 -->
             <template v-else>
-              <a-sub-menu :key="subMenu.name">
+              <a-sub-menu v-if="!subMenu?.meta?.hidden" :key="subMenu.name">
                 <template v-if="subMenu.meta?.icon" #icon>
                   <l-ify-icon :name="subMenu.meta?.icon" size="21"></l-ify-icon>
                 </template>
                 <template #title>{{ subMenu.meta?.title }}</template>
                 <!-- 三级菜单 -->
-                <a-menu-item v-for="subSubMenu in subMenu.children" :key="subSubMenu.name">
-                  <template v-if="subSubMenu.meta?.icon" #icon>
-                    <l-ify-icon :name="subSubMenu.meta?.icon" size="21"></l-ify-icon>
-                  </template>
-                  {{ subSubMenu.meta?.title }}
-                </a-menu-item>
+                <template v-for="subSubMenu in subMenu.children">
+                  <a-menu-item v-if="!subSubMenu?.meta?.hidden" :key="subSubMenu.name">
+                    <template v-if="subSubMenu.meta?.icon" #icon>
+                      <l-ify-icon :name="subSubMenu.meta?.icon" size="21"></l-ify-icon>
+                    </template>
+                    {{ subSubMenu.meta?.title }}
+                  </a-menu-item>
+                </template>
               </a-sub-menu>
             </template>
           </template>

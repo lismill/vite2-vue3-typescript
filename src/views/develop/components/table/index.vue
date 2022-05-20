@@ -49,3 +49,6 @@ const clickOperate = (item: any, data: any) => {
   }
 };
 </script>
+<script lang="ts">
+export default {name: "DevelopComponentsTable"};
+</script>

@@ -17,7 +17,7 @@ export default {
       component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/index/index.vue"),
       meta: {
         title: "示例展示",
-        keepAlive: true,
+        keepAlive: "DevelopIndex",
         // icon: "bx:camera-home",
       },
     },
@@ -37,7 +37,7 @@ export default {
           component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/table/index.vue"),
           meta: {
             title: "基础表格",
-            keepAlive: true,
+            keepAlive: "DevelopComponentsTable",
             // icon: "bx:table",
           },
         },
@@ -47,7 +47,7 @@ export default {
           component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/table-edit/index.vue"),
           meta: {
             title: "编辑表格",
-            keepAlive: true,
+            keepAlive: "DevelopComponentsTableEdit",
             // icon: "bx:table",
           },
         },
