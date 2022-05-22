@@ -17,6 +17,7 @@
     </a-card>
     <demo-dayjs></demo-dayjs>
     <demo-vuedraggable></demo-vuedraggable>
+    <demo-empty></demo-empty>
   </div>
 </template>
 <script setup lang="ts">
@@ -31,6 +32,7 @@ import DemoUploadFile from "./upload-file.vue";
 import DemoTableEdit from "../components/table-edit/index.vue";
 import DemoTableChoose from "../components/table-choose/index.vue";
 import DemoVuedraggable from "./vuedraggable.vue";
+import DemoEmpty from "./empty.vue";
 </script>
 <script lang="ts">
 export default {name: "DevelopIndex"};
