@@ -1,5 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/pre-permission"
-
-npm run lint
+. "$(dirname "$0")/pre-eslint"
