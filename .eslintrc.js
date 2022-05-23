@@ -33,6 +33,8 @@ module.exports = {
     "no-shadow": "off",
     // 禁止使用 v-html
     "vue/no-v-html": "off",
+    // 禁止校验变量先定义后使用(为了代码的业务逻辑考虑)
+    "no-use-before-define": "off",
     // 关闭any类型的警告
     "@typescript-eslint/no-explicit-any": ["off"],
     // 忽略路径别名
