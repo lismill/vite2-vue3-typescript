@@ -1967,6 +1967,46 @@ git commit -m 'test: 测试'
 ✖   found 2 problems, 0 warnings
 ```
 
+## 提交代码前对目录权限进行校验
+
+`.husky/pre-commit`
+
+```
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/pre-permission"
+
+npm run lint
+```
+
+`.husky/pre-permission`
+
+```
+#!/bin/sh
+# 校验提交 src 目录的权限
+NAMES=(
+  lismill
+)
+EMAILS=(
+  lismill@163.com
+)
+NAME=`git config user.name`
+EMAIL=`git config user.email`
+FILES=$(git diff --cached --name-only)
+
+for FILE in ${FILES[@]}
+do
+  if [[ $FILE =~ "src/" ]]; then
+    :
+  else
+    # 校验提交 src 以外目录的权限
+    # 校验失败，撤销已暂存的文件
+    echo "${NAMES[@]}" | grep -wq $NAME &&  exit 0 || echo "Error: 该用户名没有操作 src 以外目录的权限" && git reset -q HEAD -- . && exit 1
+    echo "${EMAILS[@]}" | grep -wq $EMAIL &&  exit 0 || echo "Error: 该邮箱没有操作 src 以外目录的权限" && git reset -q HEAD -- . && exit 1
+  fi
+done
+```
+
 ## 询问式 commit 信息
 
 ### 安装
