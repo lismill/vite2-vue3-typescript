@@ -8,6 +8,7 @@
         <l-ify-icon name="bx:camera-home" size="22"></l-ify-icon>
         <l-ify-icon name="bx:table" size="22"></l-ify-icon>
       </a-space>
+      <p class="flex"><l-ify-icon name="bx:table" size="22"></l-ify-icon>表格图标</p>
     </a-space>
   </a-card>
 </template>

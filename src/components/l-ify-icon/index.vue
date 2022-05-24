@@ -1,5 +1,13 @@
 <template>
-  <span :class="`iconify ${className}`" :data-icon="name" :data-width="size" :data-height="size" :style="style"></span>
+  <span>
+    <span
+      :class="`iconify ${className}`"
+      :data-icon="name"
+      :data-width="size"
+      :data-height="size"
+      :style="style"
+    ></span>
+  </span>
 </template>
 
 <script lang="ts">

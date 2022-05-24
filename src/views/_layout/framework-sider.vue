@@ -9,7 +9,7 @@
       <template v-if="menu.children?.length && menu.children?.length === 1">
         <a-menu-item v-if="!menu.children[0]?.meta?.hidden" :key="menu.children[0].name">
           <template v-if="menu.children[0].meta?.icon" #icon>
-            <l-ify-icon :name="menu.children[0].meta?.icon" size="21"></l-ify-icon>
+            <l-ify-icon class="ifyicon" :name="menu.children[0].meta?.icon" size="21"></l-ify-icon>
           </template>
           {{ menu.children[0].meta?.title }}
         </a-menu-item>
@@ -18,7 +18,7 @@
       <template v-else>
         <a-sub-menu v-if="!menu?.meta?.hidden" :key="menu.name">
           <template v-if="menu.meta?.icon" #icon>
-            <l-ify-icon :name="menu.meta?.icon" size="21"></l-ify-icon>
+            <l-ify-icon class="ifyicon" :name="menu.meta?.icon" size="21"></l-ify-icon>
           </template>
           <template #title>{{ menu.meta?.title }}</template>
           <!-- 二级菜单 -->
@@ -27,7 +27,7 @@
             <template v-if="!subMenu.children?.length">
               <a-menu-item v-if="!subMenu?.meta?.hidden" :key="subMenu.name">
                 <template v-if="subMenu.meta?.icon" #icon>
-                  <l-ify-icon :name="subMenu.meta?.icon" size="21"></l-ify-icon>
+                  <l-ify-icon class="ifyicon" :name="subMenu.meta?.icon" size="21"></l-ify-icon>
                 </template>
                 {{ subMenu.meta?.title }}
               </a-menu-item>
@@ -37,14 +37,14 @@
             <template v-else>
               <a-sub-menu v-if="!subMenu?.meta?.hidden" :key="subMenu.name">
                 <template v-if="subMenu.meta?.icon" #icon>
-                  <l-ify-icon :name="subMenu.meta?.icon" size="21"></l-ify-icon>
+                  <l-ify-icon class="ifyicon" :name="subMenu.meta?.icon" size="21"></l-ify-icon>
                 </template>
                 <template #title>{{ subMenu.meta?.title }}</template>
                 <!-- 三级菜单 -->
                 <template v-for="subSubMenu in subMenu.children">
                   <a-menu-item v-if="!subSubMenu?.meta?.hidden" :key="subSubMenu.name">
                     <template v-if="subSubMenu.meta?.icon" #icon>
-                      <l-ify-icon :name="subSubMenu.meta?.icon" size="21"></l-ify-icon>
+                      <l-ify-icon class="ifyicon" :name="subSubMenu.meta?.icon" size="21"></l-ify-icon>
                     </template>
                     {{ subSubMenu.meta?.title }}
                   </a-menu-item>
@@ -118,3 +118,9 @@ watch(
 
 onMounted(() => resetOpenKeys());
 </script>
+<style scoped lang="scss">
+.ifyicon {
+  position: relative;
+  top: 3px;
+}
+</style>
