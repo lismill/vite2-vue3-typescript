@@ -1,12 +1,24 @@
 <template>
+  <!-- header -->
+  <div v-if="!!header" class="header m-b8">
+    <slot name="header"></slot>
+  </div>
   <div v-if="type === 'canvas'" :id="ID" class="qrcode qrcode-canvas"></div>
   <div v-else class="qrcode qrcode-image">
     <img :id="ID" :style="{width: `${width}px`, height: `${width}px`}" />
   </div>
+  <!-- footer -->
+  <div v-if="!!footer" class="footer m-t6">
+    <slot name="footer"></slot>
+  </div>
+  <!-- download -->
+  <div v-if="!!download" class="download m-t6">
+    <slot name="download"></slot>
+  </div>
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from "vue";
+import {ref, onMounted, useSlots} from "vue";
 import QRCode from "qrcode";
 
 interface IQRCode {
@@ -16,6 +28,8 @@ interface IQRCode {
   dark?: string;
   light?: string;
 }
+
+const {header, footer, download} = useSlots();
 
 const emit = defineEmits(["get:canvas:url", "get:image:url"]);
 const props = withDefaults(defineProps<IQRCode>(), {

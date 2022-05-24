@@ -8,25 +8,57 @@
       light?: string;
      -->
     <a-row type="flex" justify="space-around">
-      <a-col :span="4">
-        <h3>Canvas: 111111</h3>
-        <l-qrcode text="Canvas: 111111" @get:canvas:url="getCanvasUrl1"></l-qrcode>
-        <a-button type="primary" class="m-t16" @click="handleDownloadByCanvas1">下载</a-button>
+      <a-col :span="4" class="text-center">
+        <l-qrcode text="Canvas: 111111" @get:canvas:url="getCanvasUrl1">
+          <template #header>
+            <div>Canvas: 111111</div>
+          </template>
+          <template #footer>
+            <div>二维码介绍文案</div>
+          </template>
+          <template #download>
+            <a-button type="primary" @click="handleDownloadByCanvas1">下载</a-button>
+          </template>
+        </l-qrcode>
       </a-col>
       <a-col :span="4">
-        <h3>Canvas: 222222</h3>
-        <l-qrcode text="Canvas: 222222" @get:canvas:url="getCanvasUrl2"></l-qrcode>
-        <a-button type="primary" class="m-t16" @click="handleDownloadByCanvas2">下载</a-button>
+        <l-qrcode text="Canvas: 222222" @get:canvas:url="getCanvasUrl2">
+          <template #header>
+            <div>Canvas: 222222</div>
+          </template>
+          <template #footer>
+            <div>二维码介绍文案</div>
+          </template>
+          <template #download>
+            <a-button type="primary" @click="handleDownloadByCanvas2">下载</a-button>
+          </template>
+        </l-qrcode>
       </a-col>
       <a-col :span="4">
-        <h3>Image: 111111</h3>
-        <l-qrcode type="image" text="Image: 111111" @get:image:url="getImageUrl1"></l-qrcode>
-        <a-button type="primary" class="m-t16" @click="handledownloadByBase641">下载</a-button>
+        <l-qrcode type="image" text="Image: 111111" @get:image:url="getImageUrl1">
+          <template #header>
+            <div>Image: 111111</div>
+          </template>
+          <template #footer>
+            <div>二维码介绍文案</div>
+          </template>
+          <template #download>
+            <a-button type="primary" @click="handledownloadByBase641">下载</a-button>
+          </template>
+        </l-qrcode>
       </a-col>
       <a-col :span="4">
-        <h3>Image: 222222</h3>
-        <l-qrcode type="image" text="Image: 222222" @get:image:url="getImageUrl2"></l-qrcode>
-        <a-button type="primary" class="m-t16" @click="handledownloadByBase642">下载</a-button>
+        <l-qrcode type="image" text="Image: 222222" @get:image:url="getImageUrl2">
+          <template #header>
+            <div>Image: 222222</div>
+          </template>
+          <template #footer>
+            <div>二维码介绍文案</div>
+          </template>
+          <template #download>
+            <a-button type="primary" @click="handledownloadByBase642">下载</a-button>
+          </template>
+        </l-qrcode>
       </a-col>
     </a-row>
   </div>

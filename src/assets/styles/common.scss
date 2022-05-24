@@ -76,6 +76,16 @@ img {
   background: #1890ff !important;
 }
 
+/**
+ * 剧中方式
+ */
+ $fonts: left, right, center;
+ @each $i in $fonts {
+   .text-#{$i} {
+     text-align: #{$i};
+   }
+ }
+
 // 超出指定行数省略号
 @mixin line-clamp($number) {
   word-break: break-all;
