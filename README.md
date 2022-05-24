@@ -987,6 +987,210 @@ export interface IHomeListR {
 }
 ```
 
+## 配置页面缓存和标签页缓存
+
+### 实现逻辑
+
+`整体思路`
+
+- 路由设置 keepAlive 标识
+- 获取有缓存标识的路由 name
+- 存入 store
+- router-view 的 include 获取 store 中的值 (三级菜单缓存, router-view 的 name 也需要缓存)
+- 根据标签页的操作处理缓存
+
+`标签页面操作`
+
+- 删除标签页: 清除 include 中的 name
+- 清空标签页: 恢复 include 的默认值
+- 刷新当前路由: 先清除 include 中的 name, 借助中转路由回跳, 中转路由跳回前添加 to.name 到 include
+
+### 关键代码
+
+`src/views/_layout/index.vue`
+
+```
+<router-view v-slot="{Component}">
+  <keep-alive :include="USE_STORE_KEEPALIVE.keepalives">
+    <component :is="Component" :key="$route.path" />
+  </keep-alive>
+</router-view>
+```
+
+`src/router/index.ts`
+
+```
+// 缓存的菜单
+export const KEEPALIVE_ROUTES = (() => {
+  const KEEPALIVES: Array<string> = ["Layout"];
+  function reduceKeepAlive(routes: any) {
+    routes.forEach((item: any) => {
+      item?.meta?.keepAlive && KEEPALIVES.push(item.meta.keepAlive);
+      item?.children?.length && reduceKeepAlive(item.children ?? []);
+    });
+  }
+  reduceKeepAlive(router.options.routes);
+  return KEEPALIVES;
+})();
+```
+
+`src/stores/keepalive.ts`
+
+```
+import {defineStore} from "pinia";
+import {KEEPALIVE_ROUTES} from "@/router";
+
+const useStoreKeepalive = defineStore("STORE_KEEPALIVE)", {
+  state: () => {
+    return {
+      keepalives: KEEPALIVE_ROUTES,
+    };
+  },
+  actions: {
+    addKeepAlives(keepalive: string) {
+      !this.keepalives.find((item) => item === keepalive) && this.keepalives.push(keepalive);
+    },
+    removeKeepAlives(keepalive: string | Array<any>) {
+      typeof keepalive === "string"
+        ? (this.keepalives = this.keepalives.filter((item) => item !== keepalive))
+        : (this.keepalives = this.keepalives.filter(
+            (item) => !keepalive.some((itemParams: any) => itemParams === item),
+          ));
+    },
+  },
+});
+export default useStoreKeepalive;
+```
+
+`src/views/_layout/framework-tabs.vue`
+
+```
+<template>
+  <div class="framework-tabs bg-ffffff p-l16">
+    <a-tabs v-model:activeKey="activeKey" size="small" hide-add type="editable-card" @tab-click="tabClick" @edit="edit">
+      <a-tab-pane
+        v-for="(tab, index) in USE_STORE_TABS.tabs"
+        :key="tab.path"
+        :tab="tab.title"
+        :closable="index !== 0"
+      ></a-tab-pane>
+      <template #rightExtra>
+        <div class="toolbar p-r16">
+          <span title="刷新页面" @click="reload">
+            <l-ify-icon name="zondicons:reload" size="16"></l-ify-icon>
+          </span>
+          <span v-if="USE_STORE_TABS.tabs.length > 1" title="全部关闭" @click="closeAll">
+            <l-ify-icon name="mdi:window-close" size="17" style="top: 4px"></l-ify-icon>
+          </span>
+        </div>
+      </template>
+    </a-tabs>
+  </div>
+</template>
+
+<script setup lang="ts">
+import {onMounted, ref, watch} from "vue";
+import {useRoute, useRouter} from "vue-router";
+import useStoreTabs from "@/stores/tabs";
+import useStoreKeepalive from "@/stores/keepalive";
+
+const ROUTE = useRoute();
+const ROUTER = useRouter();
+const USE_STORE_TABS = useStoreTabs();
+const USE_STORE_KEEPALIVE = useStoreKeepalive();
+const activeKey = ref(USE_STORE_TABS.tabs[0].path);
+
+// 清除 keepalive
+const removeKeepAlive = () => {
+  ROUTE.meta?.keepAlive && USE_STORE_KEEPALIVE.removeKeepAlives(ROUTE.meta.keepAlive as string);
+};
+
+// 添加 keepalive
+const addKeepAlive = () => {
+  ROUTE.meta?.keepAlive && USE_STORE_KEEPALIVE.addKeepAlives(ROUTE.meta.keepAlive as string);
+};
+
+// 切换标签
+const tabClick = (path: any) => ROUTER.push(path);
+
+// 删除标签
+const edit = (path: any) => {
+  // 清除 tab
+  if (ROUTE.path === path) {
+    const LAST_TABS = USE_STORE_TABS.removeTabs(path);
+    USE_STORE_TABS.tabs.length === 1 ? ROUTER.push(USE_STORE_TABS.tabs[0].path) : ROUTER.push(LAST_TABS);
+  } else {
+    USE_STORE_TABS.removeTabs(path);
+    USE_STORE_TABS.tabs.length === 1 && ROUTER.push(USE_STORE_TABS.tabs[0].path);
+  }
+  // 清除 keepalive
+  removeKeepAlive();
+};
+
+// 刷新路由
+const reload = () => {
+  removeKeepAlive();
+  ROUTER.push(`/framework/redirect?keepalive=${ROUTE.meta.keepAlive}`);
+};
+
+// 关闭全部标签
+const closeAll = () => {
+  USE_STORE_TABS.resetTabs();
+  ROUTER.push(USE_STORE_TABS.tabs[0].path);
+};
+
+// 设置标签页
+const changeTabs = () => {
+  USE_STORE_TABS.changeTabs({
+    path: ROUTE.path,
+    title: ROUTE.meta?.title,
+    hidden: ROUTE.meta?.hidden ?? false,
+  });
+  activeKey.value = ROUTE.path;
+  addKeepAlive();
+};
+
+watch(
+  () => ROUTE.path,
+  () => changeTabs(),
+);
+
+onMounted(() => changeTabs());
+</script>
+
+<style lang="scss" scoped>
+.framework-tabs
+  :deep(.ant-tabs-top > .ant-tabs-nav, .ant-tabs-bottom > .ant-tabs-nav, .ant-tabs-top
+    > div
+    > .ant-tabs-nav, .ant-tabs-bottom > div > .ant-tabs-nav) {
+  margin: 2px 0 0 0;
+}
+
+.framework-tabs
+  :deep(.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-top
+    > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top
+    > div
+    > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before) {
+  border-bottom: 1px solid rgba(240, 242, 245, 1);
+}
+
+.framework-tabs :deep(.ant-tabs-tab-remove) {
+  margin-left: 1px;
+  font-size: 11px;
+}
+
+.toolbar {
+  span {
+    cursor: pointer;
+    padding: 4px;
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+</style>
+```
+
 ## 配置日期时间库 - dayjs
 
 ### 安装
