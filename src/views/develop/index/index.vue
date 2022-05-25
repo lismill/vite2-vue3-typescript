@@ -5,6 +5,13 @@
     <a-card title="按钮" size="small" hoverable>
       <demo-button></demo-button>
     </a-card>
+    <a-card title="自定义指令 - 标签权限" size="small" hoverable>
+      <div v-permission="['all']">
+        权限判断: {{`
+        <div v-permission="['all']">权限判断</div>
+        `}}
+      </div>
+    </a-card>
     <demo-local-storage></demo-local-storage>
     <demo-open-target-window></demo-open-target-window>
     <demo-download-file></demo-download-file>

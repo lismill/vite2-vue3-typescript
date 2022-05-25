@@ -12,11 +12,11 @@ import {Empty} from "ant-design-vue";
 
 withDefaults(
   defineProps<{
-    image?: string;
-    desc: string;
+    image?: any;
+    desc?: string;
   }>(),
   {
-    image: Empty.PRESENTED_IMAGE_DEFAULT as string,
+    image: Empty.PRESENTED_IMAGE_DEFAULT,
     desc: "暂无数据",
   },
 );
