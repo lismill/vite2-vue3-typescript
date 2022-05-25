@@ -1,11 +1,55 @@
-## 版本信息
+## 依赖信息
 
-| 插件       | 版本    |
-| ---------- | ------- |
-| vite       | ^2.9.0  |
-| prettier   | ^2.6.2  |
-| eslint     | ^7.32.0 |
-| typescript | ^4.5.4  |
+```
+"dependencies": {
+  "@iconify/iconify": "^2.2.1",
+  "ant-design-vue": "^3.2.0",
+  "axios": "^0.26.1",
+  "dayjs": "^1.11.1",
+  "echarts": "^5.3.2",
+  "nprogress": "^0.2.0",
+  "pinia": "^2.0.13",
+  "qrcode": "^1.5.0",
+  "qs": "^6.10.3",
+  "screenfull": "^6.0.1",
+  "vue": "^3.2.25",
+  "vue-router": "^4.0.14",
+  "vuedraggable": "^4.1.0"
+},
+"devDependencies": {
+  "@commitlint/cli": "^16.2.3",
+  "@commitlint/config-conventional": "^16.2.1",
+  "@iconify/json": "^2.1.29",
+  "@types/node": "^17.0.23",
+  "@typescript-eslint/eslint-plugin": "^5.18.0",
+  "@typescript-eslint/parser": "^5.18.0",
+  "@vitejs/plugin-vue": "^2.3.0",
+  "@vitejs/plugin-vue-jsx": "^1.3.10",
+  "commitizen": "^4.2.4",
+  "cz-conventional-changelog": "^3.3.0",
+  "eslint": "^7.32.0",
+  "eslint-config-airbnb-base": "^15.0.0",
+  "eslint-config-prettier": "^8.5.0",
+  "eslint-plugin-import": "^2.26.0",
+  "eslint-plugin-prettier": "^4.0.0",
+  "eslint-plugin-vue": "^8.6.0",
+  "husky": "^7.0.4",
+  "less": "^4.1.2",
+  "mockjs": "^1.1.0",
+  "prettier": "^2.6.2",
+  "rollup-plugin-visualizer": "^5.6.0",
+  "sass": "^1.50.1",
+  "typescript": "^4.5.4",
+  "unplugin-vue-components": "^0.19.3",
+  "vite": "^2.9.0",
+  "vite-plugin-compression": "^0.5.1",
+  "vite-plugin-eslint": "^1.3.0",
+  "vite-plugin-mock": "^2.9.6",
+  "vite-plugin-purge-icons": "^0.8.1",
+  "vite-plugin-svg-icons": "^2.0.1",
+  "vue-tsc": "^0.29.8"
+},
+```
 
 ## Eslint + Prettier 代码规范和自动格式化
 
