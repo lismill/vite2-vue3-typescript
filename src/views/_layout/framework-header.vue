@@ -62,7 +62,7 @@
           <a-menu-item>
             <a href="javascript:;">修改信息</a>
           </a-menu-item>
-          <a-menu-item>
+          <a-menu-item @click="loginout">
             <a href="javascript:;">退出登录</a>
           </a-menu-item>
         </a-menu>
@@ -72,7 +72,7 @@
 </template>
 <script setup lang="ts">
 import {onMounted, ref, watch} from "vue";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import screenfull from "screenfull";
 import useStoreCommon from "@/stores/common";
 import storage from "@/utils/local-storage";
@@ -87,6 +87,7 @@ const props = withDefaults(
 );
 const emit = defineEmits(["update:collapsed"]);
 const route = useRoute();
+const router = useRouter();
 const USE_STORE_COMMON = useStoreCommon();
 
 // 面包屑
@@ -121,6 +122,9 @@ const trigger = () => {
 
 // 全屏切换
 const isFullscreen = ref(false);
+
+// 下拉菜单
+const loginout = () => router.push("/login");
 
 watch(
   () => route.path,
