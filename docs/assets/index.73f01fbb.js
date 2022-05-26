@@ -1,1 +1,0 @@
-import{f as n,s as o,o as r,U as t,aj as a}from"./index.acfb3ab2.js";const m=n({setup(c){const e=o();return(_,f)=>{const s=a;return r(),t(s,{ref_key:"iframe",ref:e,class:"l-iframe",src:"https://vitejs.dev"},null,512)}}});export{m as default};

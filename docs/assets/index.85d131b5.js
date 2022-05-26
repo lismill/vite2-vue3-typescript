@@ -1,1 +1,0 @@
-import{_,f as t,al as o,o as n,c,i as r,am as p,an as d,ao as i}from"./index.acfb3ab2.js";const u={class:"redirect"},E=t({setup(l){const e=p(),a=d();return o().addKeepAlives(a.query.keepalive),e.back(),(m,R)=>{const s=i;return n(),c("div",u,[r(s)])}}});var x=_(E,[["__scopeId","data-v-291bbd9a"]]);export{x as default};
