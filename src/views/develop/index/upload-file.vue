@@ -1,12 +1,24 @@
 <template>
   <a-card title="上传文件" size="small" hoverable>
-    <l-upload-file :config="config"></l-upload-file>
+    <l-upload-file :config="config" @file:change="(fileList) => (fileLists = fileList)"></l-upload-file>
+    <p>{{ fileLists }}</p>
   </a-card>
 </template>
 <script setup lang="ts">
+import {ref} from "vue";
+
 const config = {
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  maxLength: 4,
-  fileList: [{name: "1.file"}, {name: "2.file"}],
+  // antdv 组件参数
+  maxCount: 2,
+  fileList: [
+    {
+      name: "xx.png",
+      status: "done",
+      response: {
+        status: true,
+      },
+    },
+  ],
 };
+const fileLists = ref(config.fileList);
 </script>

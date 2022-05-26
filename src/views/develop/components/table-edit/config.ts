@@ -14,6 +14,15 @@ export default {
       align: "center",
     },
     {
+      type: "upload",
+      title: "文件上传",
+      dataIndex: "file",
+      ellipsis: true,
+      width: 160,
+      rules: [{required: true, message: ""}],
+      others: {},
+    },
+    {
       type: "input",
       title: "姓名",
       dataIndex: "name",
@@ -23,8 +32,8 @@ export default {
       type: "input",
       title: "年龄",
       dataIndex: "age",
-      others: {},
       rules: [{required: true, message: "请输入年龄"}],
+      others: {},
     },
     {
       type: "date",

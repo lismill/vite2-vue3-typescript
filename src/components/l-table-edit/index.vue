@@ -92,6 +92,21 @@
                   </a-select-option>
                 </a-select>
               </a-form-item>
+              <!-- upload -->
+              <!-- input -->
+              <a-form-item
+                v-if="column.type === 'upload'"
+                :name="`${column.dataIndex}[${index}]`"
+                :rules="column.rules"
+              >
+                <l-upload-file
+                  :config="{
+                    ...column.others,
+                    disabled: deepConfig.disabled,
+                  }"
+                  @file:change="(fileList) => (form[`${column.dataIndex}[${index}]`] = fileList)"
+                ></l-upload-file>
+              </a-form-item>
               <!-- operate -->
               <template v-if="column.type === 'operate'">
                 <span v-if="deepConfig.disabled" class="operate-disabled">删除</span>
@@ -189,6 +204,24 @@ const onCheck = async () => {
     top: 30px;
     font-size: 12px;
     min-height: 12px;
+  }
+
+  :deep(.ant-upload-list.ant-upload-list-picture-card),
+  :deep(.ant-upload-list-picture-card-container),
+  :deep(.ant-upload.ant-upload-select.ant-upload-select-picture-card),
+  :deep(.ant-upload.ant-upload-select-picture-card) {
+    width: 60px;
+    height: 60px;
+  }
+  :deep(.ant-upload-list-picture .ant-upload-list-item),
+  :deep(.ant-upload-list-picture-card .ant-upload-list-item) {
+    padding: 4px;
+  }
+
+  :deep(.ant-form-item-has-error span.plus),
+  :deep(.ant-form-item-has-error .ant-upload.ant-upload-select.ant-upload-select-picture-card) {
+    color: #e74e3d !important;
+    border-color: #e74e3d;
   }
 }
 </style>

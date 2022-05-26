@@ -49,7 +49,15 @@ deepConfig.value.form.data = {
   text: "展示文本信息，支持 <b style='color: #ff4d4f;'>HTML</b>",
   slot: 1,
   switch: false,
-  upload: [{name: "1"}, {name: "2"}],
+  upload: [
+    {
+      name: "xx.png",
+      status: "done",
+      response: {
+        status: true,
+      },
+    },
+  ],
 };
 
 const deepTableEditConfig = ref(tableEditConfig);

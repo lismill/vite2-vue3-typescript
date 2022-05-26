@@ -1,57 +1,84 @@
 <template>
   <div class="l-upload-file">
     <a-upload
-      v-model:file-list="fileList"
-      list-type="picture-card"
-      :action="action"
-      :data="data"
-      :headers="headers"
-      :with-credentials="true"
-      v-bind="config"
+      v-bind="defaultConfig"
+      v-model:file-list="fileLists"
+      :before-upload="beforeUpload"
       @preview="handlePreview"
       @change="handleChange"
     >
-      <div v-if="fileList.length < config.maxLength">
-        <l-ify-icon name="carbon:add" size="36" color="#999999"></l-ify-icon>
+      <div v-if="fileLists.length < defaultConfig.maxCount">
+        <span class="plus" style="font-size: 20px; font-weight: 500; color: #888888">+</span>
       </div>
     </a-upload>
-    <a-modal :visible="visible" :title="title" :footer="null" @cancel="handleCancel">
-      <img alt="example" style="width: 100%" :src="image" />
+    <a-modal :visible="preview.visible" :title="preview.title" :footer="null" @cancel="handlePreviewCancel">
+      <img alt="example" style="width: 100%" :src="preview.image" />
     </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import {message, Upload} from "ant-design-vue";
+import {reactive, ref} from "vue";
 
-const props = defineProps<{config: any}>();
+const props = defineProps<{config?: any}>();
 const emit = defineEmits(["file:change"]);
 
-/**
- * 默认数据
- */
-const action = import.meta.env.VITE_FILE_UPLOAD_PATH;
-const data = {};
-const headers = {};
+const defaultConfig = {
+  action: "http://yapi.syy.dongchali.cn/mock/730/upload",
+  listType: "picture-card",
+  maxCount: 1,
+  accept: "",
+  data: {},
+  headers: {},
+  method: "post",
+  multiple: false,
+  withCredentials: true,
+  ...props.config,
+};
+const fileLists = ref(props.config?.fileList ?? []);
+const preview = reactive({
+  visible: false,
+  image: "",
+  title: "",
+});
 
 /**
- * 文件上传
+ * 文件上传之前
  */
-const fileList = ref(props.config?.fileList ?? []);
-const visible = ref(false);
-const image = ref("");
-const title = ref("");
-const handleCancel = () => {
-  visible.value = false;
-  title.value = "";
+const beforeUpload = (file: {size: number}): string | boolean => {
+  const isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isLt2M) {
+    message.error("Image must smaller than 2MB!");
+    return Upload.LIST_IGNORE;
+  }
+  return true;
 };
-const handlePreview = (file: any) => {
-  visible.value = true;
-  image.value = file.response.url;
-  title.value = file.response.name;
-};
-const handleChange = ({fileList}: any) => {
-  const FILE_LIST = fileList.filter((item: any) => !item.status || item.status === "done");
+
+/**
+ * 上传文件
+ */
+const handleChange = () => {
+  // 根据服务器返回的数据结构处理
+  const FILE_LIST = fileLists.value.filter((item: any) => item.status === "done" && item.response.status);
   emit("file:change", FILE_LIST);
+};
+
+/**
+ * 预览文件
+ */
+const handlePreview = (file: any) => {
+  // 根据服务器返回的数据结构处理
+  preview.visible = true;
+  preview.image = file.response.url;
+  preview.title = file.response.name;
+};
+
+/**
+ * 取消预览文件
+ */
+const handlePreviewCancel = () => {
+  preview.visible = false;
+  preview.title = "";
 };
 </script>
