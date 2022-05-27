@@ -110,6 +110,14 @@ export default {
             title: "QRCode",
           },
         },
+        {
+          path: "editor",
+          name: "/develop/components/editor",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/editor/index.vue"),
+          meta: {
+            title: "富文本编辑器",
+          },
+        },
       ],
     },
   ],

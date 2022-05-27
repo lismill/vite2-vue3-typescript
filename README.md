@@ -1292,6 +1292,105 @@ onMounted(() => changeTabs());
 </style>
 ```
 
+## 配置富文本编辑器 - wangeditor
+
+### 安装
+
+```
+npm install @wangeditor/editor --save
+npm install @wangeditor/editor-for-vue@next --save
+```
+
+### 配置
+
+`src/components/l-editor/index.vue`
+
+```
+<template>
+  <div class="l-editor">
+    <Toolbar style="border-bottom: 1px solid #ccc" :editor="editorRef" :default-config="toolbarConfig" :mode="mode" />
+    <Editor
+      v-model="valueHtml"
+      style="overflow-y: hidden"
+      :style="{height: `${height}px`}"
+      :default-config="editorConfig"
+      :mode="mode"
+      @on-created="handleCreated"
+      @on-change="handleChange"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import {onBeforeUnmount, ref, shallowRef} from "vue";
+import {Editor, Toolbar} from "@wangeditor/editor-for-vue";
+import {IDomEditor} from "@wangeditor/editor";
+import "@wangeditor/editor/dist/css/style.css";
+
+const props = withDefaults(
+  defineProps<{
+    content?: string;
+    mode?: "normal" | "simple";
+    height?: number;
+    toolbarConfig?: any;
+    editorConfig?: any;
+  }>(),
+  {
+    content: "<p>hello</p>",
+    mode: "simple",
+    height: 360,
+    toolbarConfig: {},
+    editorConfig: {placeholder: "请输入内容..."},
+  },
+);
+const emits = defineEmits(["change"]);
+
+// 编辑器实例
+const editorRef = shallowRef();
+
+// 内容HTML
+const valueHtml = ref(props.content);
+
+// 组件销毁时，也及时销毁编辑器
+onBeforeUnmount(() => {
+  const editor = editorRef.value;
+  if (editor == null) return;
+  editor.destroy();
+});
+
+const handleCreated = (editor: IDomEditor) => (editorRef.value = editor);
+const handleChange = (editor: IDomEditor) => emits("change", editor.getHtml());
+</script>
+<style scoped lang="scss">
+.l-editor {
+  border: 1px solid #d9d9d9;
+}
+</style>
+```
+
+### 使用
+
+`src/views/develop/components/editor/index.vue`
+
+```
+<template>
+  <div class="bg-ffffff p-16">
+    <div class="m-b16">
+      <p>绑定的html: {{ content }}</p>
+    </div>
+    <l-editor :content="content" :height="500" @change="(v) => (content = v)"></l-editor>
+  </div>
+</template>
+
+<script setup lang="ts">
+import {ref} from "vue";
+
+const content = ref("<p>Hello, </p>");
+</script>
+
+<style lang="scss" scoped></style>
+```
+
 ## 配置日期时间库 - dayjs
 
 ### 安装

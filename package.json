@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@iconify/iconify": "^2.2.1",
+    "@wangeditor/editor": "^5.1.0",
+    "@wangeditor/editor-for-vue": "^5.1.11",
     "ant-design-vue": "^3.2.0",
     "axios": "^0.26.1",
     "dayjs": "^1.11.1",
