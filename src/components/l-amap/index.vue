@@ -66,7 +66,7 @@ const initMap = () => {
       props.plugins.includes("AMap.Geolocation") && map.addControl(new AMap.Geolocation());
 
       // 特定方法
-      props.customMap(map, AMap);
+      props.customMap && props.customMap(map, AMap);
     })
     .catch((e) => console.log(e));
 };
