@@ -118,6 +118,14 @@ export default {
             title: "富文本编辑器",
           },
         },
+        {
+          path: "amap",
+          name: "/develop/components/amap",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/components/amap/index.vue"),
+          meta: {
+            title: "高德地图",
+          },
+        },
       ],
     },
   ],
