@@ -61,13 +61,17 @@ const init = () => {
     QRCode.toCanvas(props.text, OPTION, (err: any, canvas: HTMLCanvasElement) => {
       if (err) throw err;
       const container: HTMLElement | null = document.getElementById(ID);
-      (container as HTMLElement).appendChild(canvas);
+      if (!container) return;
+
+      container && (container as HTMLElement).appendChild(canvas);
       emit("get:canvas:url", canvas);
     });
   } else if (props.type === "image") {
     QRCode.toDataURL(props.text, OPTION, (err: any, url: any) => {
       if (err) throw err;
       const image: HTMLElement | null = document.getElementById(ID);
+
+      if (!image) return;
       (image as HTMLImageElement).src = url;
       DATA_URL.value = url;
       emit("get:image:url", DATA_URL.value);
