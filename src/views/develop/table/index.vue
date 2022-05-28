@@ -12,8 +12,10 @@
 </template>
 <script setup lang="ts">
 import {notification} from "ant-design-vue";
+import {useRouter} from "vue-router";
 import config from "./config";
 
+const ROUTER = useRouter();
 /**
  * 点击操作按钮
  */
@@ -30,6 +32,7 @@ const clickOperate = (item: any, data: any) => {
       notification.success({message: `${item.name}`, description: "处理删除业务逻辑", duration: 2.5});
       break;
     case "新增数据":
+      ROUTER.push("/develop/table-create");
       notification.success({message: `${item.name}`, description: "处理新增数据业务逻辑", duration: 2.5});
       break;
     case "导出数据":

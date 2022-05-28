@@ -31,6 +31,16 @@ export default {
       },
     },
     {
+      path: "table-create",
+      name: "/develop/table-create",
+      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/table-create/index.vue"),
+      meta: {
+        title: "新建基础表格",
+        keepAlive: "DevelopComponentsTableCreate",
+        hidden: true,
+      },
+    },
+    {
       path: "table-edit",
       name: "/develop/table-edit",
       component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/table-edit/index.vue"),
@@ -60,7 +70,7 @@ export default {
     {
       path: "jsx",
       name: "/develop/jsx",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/tsx/index.vue"),
+      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/tsx"),
       meta: {
         title: "JSX",
       },
