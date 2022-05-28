@@ -1,6 +1,12 @@
 <template>
   <div v-if="deepConfig?.sections?.length > 0 && deepConfig?.form?.data" class="l-form p-b56">
-    <a-form ref="formRef" name="l-form" :model="deepConfig.form.data" @finish="onFinish">
+    <a-form
+      ref="formRef"
+      name="l-form"
+      :model="deepConfig.form.data"
+      @finish="onFinish"
+      @finish-failed="onFinishFailed"
+    >
       <div v-for="(section, index) in deepConfig.sections" :key="index">
         <div v-if="section.title" class="title m-b24">{{ section.title }}</div>
         <a-row class="p-r32">
@@ -221,7 +227,7 @@
 </template>
 <script setup lang="ts">
 import {ref, watch} from "vue";
-import type {FormInstance} from "ant-design-vue";
+import {FormInstance, message} from "ant-design-vue";
 import useStoreCommon from "@/stores/common";
 import formInfo from "./form-info.vue";
 import formTooltip from "./form-tooltip.vue";
@@ -237,6 +243,10 @@ const formRef: any = ref<FormInstance>();
 // 表单提交
 const onFinish = () => {
   console.log("onFinish", deepConfig.value.form.data);
+};
+// 表单提交失败
+const onFinishFailed = () => {
+  message.error("请完整填写表单");
 };
 
 // 表单重置

@@ -32,6 +32,7 @@
         :current="props.config.footer.pagination.currentPage"
         show-quick-jumper
         :total="config.footer.pagination?.total ?? 0"
+        :show-total="() => `共 ${config.footer.pagination?.total ?? 0} 条数据`"
         @change="onChange"
       />
     </div>
