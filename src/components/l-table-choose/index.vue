@@ -8,7 +8,7 @@
       :mask-closable="false"
       :destroy-on-close="true"
       v-bind="deepConfig.modal"
-      @cancel="() => (deepConfig.visible = false)"
+      @cancel="ok"
       @ok="ok"
     >
       <l-table :config="deepConfig" @update:config="updateConfig"></l-table>
