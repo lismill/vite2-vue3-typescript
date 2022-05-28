@@ -71,6 +71,13 @@ const deepTableEditConfig = ref(tableEditConfig);
 const deepTableChooseConfig = ref(tableChooseConfig);
 
 /**
+ * 测试详情/编辑页面
+ */
+if (Math.random() * 2 > 1) {
+  deepConfig.value = {...deepConfig.value, form: {...deepConfig.value.form, disabled: true}};
+}
+
+/**
  * 可编辑表格插槽
  */
 const updateTableEdit = (data: any) => {
