@@ -158,11 +158,22 @@
               ></l-upload-file>
               <form-info v-if="item.info" :info="item.info"></form-info>
             </a-form-item>
+            <!-- editor -->
+            <a-form-item v-if="item.type === 'editor'" :name="item.name" :rules="item.rules">
+              <template #label><form-tooltip v-bind="item"></form-tooltip></template>
+              <l-editor
+                v-bind="item.others"
+                :content="deepConfig.form.data[item.name]"
+                :disabled="config?.form?.disabled"
+                @change="(html) => (deepConfig.form.data[item.name] = html)"
+              ></l-editor>
+              <form-info v-if="item.info" :info="item.info"></form-info>
+            </a-form-item>
             <!-- slot -->
             <a-form-item v-if="item.type === 'slot'" :name="item.name" :rules="item.rules">
               <template #label><form-tooltip v-bind="item"></form-tooltip></template>
               <div class="l-h32">
-                <slot :name="item.name ?? ''" :data="deepConfig.form.data" :item="item"></slot>
+                <slot :name="item.name ?? ''" :form="deepConfig.form" :item="item"></slot>
               </div>
               <form-info v-if="item.info" :info="item.info"></form-info>
             </a-form-item>

@@ -9,16 +9,19 @@
       padding: deepConfig.border ? '16px' : '',
     }"
   >
+    <!-- 编辑模式 -->
     <a-form ref="formRef" :model="form">
-      <!-- 添加按钮 -->
-      <a-button v-if="deepConfig.headerButton !== false && !deepConfig.disabled" class="m-b16 m-r8" @click="addRow">
-        添加数据
-      </a-button>
-      <!-- 操作按钮 -->
-      <a-button v-if="!deepConfig.disabled" type="primary" class="m-b16 m-r8" @click="onCheck">确认数据</a-button>
-      <a-button v-if="deepConfig.disabled" class="success m-b16" type="primary" @click="deepConfig.disabled = false">
-        编辑数据
-      </a-button>
+      <template v-if="!deepConfig.readOnly">
+        <!-- 添加按钮 -->
+        <a-button v-if="deepConfig.headerButton !== false && !deepConfig.disabled" class="m-b16 m-r8" @click="addRow">
+          添加数据
+        </a-button>
+        <!-- 操作按钮 -->
+        <a-button v-if="!deepConfig.disabled" type="primary" class="m-b16 m-r8" @click="onCheck"> 确认数据 </a-button>
+        <a-button v-if="deepConfig.disabled" class="success m-b16" type="primary" @click="deepConfig.disabled = false">
+          编辑数据
+        </a-button>
+      </template>
       <!-- 头部提示 -->
       <div v-if="deepConfig.headerTips" class="m-b16" v-html="deepConfig.headerTips"></div>
       <!-- 表格 -->
@@ -41,7 +44,7 @@
                   v-model:value="form[`${column.dataIndex}[${index}]`]"
                   :allow-clear="true"
                   :placeholder="`请输入${column.title}`"
-                  :disabled="deepConfig.disabled"
+                  :disabled="deepConfig.disabled || deepConfig.readOnly"
                   v-bind="column.others"
                   @change="onChange(column, index)"
                 />
@@ -52,7 +55,7 @@
                   v-model:value="form[`${column.dataIndex}[${index}]`]"
                   class="w-100"
                   :placeholder="`请选择${column.title}`"
-                  :disabled="deepConfig.disabled"
+                  :disabled="deepConfig.disabled || deepConfig.readOnly"
                   v-bind="column.others"
                   @change="onChange(column, index)"
                 />
@@ -66,7 +69,7 @@
                 <a-range-picker
                   v-model:value="form[`${column.dataIndex}[${index}]`]"
                   :placeholder="[`开始${column.title}`, `结束${column.title}`]"
-                  :disabled="deepConfig.disabled"
+                  :disabled="deepConfig.disabled || deepConfig.readOnly"
                   class="w-100"
                   v-bind="column.others"
                   @change="onChange(column, index)"
@@ -82,7 +85,7 @@
                   v-model:value="form[`${column.dataIndex}[${index}]`]"
                   :allow-clear="true"
                   :placeholder="`请选择${column.title}`"
-                  :disabled="deepConfig.disabled"
+                  :disabled="deepConfig.disabled || deepConfig.readOnly"
                   class="w-100"
                   v-bind="column.others"
                   @change="onChange(column, index)"
@@ -102,7 +105,7 @@
                 <l-upload-file
                   :config="{
                     ...column.others,
-                    disabled: deepConfig.disabled,
+                    disabled: deepConfig.disabled || deepConfig.readOnly,
                   }"
                   @file:change="(fileList) => (form[`${column.dataIndex}[${index}]`] = fileList)"
                 ></l-upload-file>
@@ -110,9 +113,16 @@
               <!-- operate -->
               <template v-if="column.type === 'operate'">
                 <span v-if="deepConfig.disabled" class="operate-disabled">删除</span>
-                <a-popconfirm v-else placement="topRight" title="确定删除数据么?" @confirm="deleteRow(index)">
-                  <a class="link">删除</a>
-                </a-popconfirm>
+                <template v-else>
+                  <template v-if="deepConfig.readOnly">
+                    <span class="operate-disabled">删除</span>
+                  </template>
+                  <template v-else>
+                    <a-popconfirm placement="topRight" title="确定删除数据么?" @confirm="deleteRow(index)">
+                      <a class="link">删除</a>
+                    </a-popconfirm>
+                  </template>
+                </template>
               </template>
             </template>
             <template v-else>{{ text }}</template>
@@ -120,15 +130,17 @@
         </template>
       </a-table>
       <!-- 添加数据 -->
-      <a-button
-        v-if="deepConfig.footerButton !== false && !deepConfig.disabled"
-        class="m-t16"
-        block
-        type="dashed"
-        @click="addRow"
-      >
-        添加数据
-      </a-button>
+      <template v-if="!deepConfig.readOnly">
+        <a-button
+          v-if="deepConfig.footerButton !== false && !deepConfig.disabled"
+          class="m-t16"
+          block
+          type="dashed"
+          @click="addRow"
+        >
+          添加数据
+        </a-button>
+      </template>
       <!-- 底部提示 -->
       <div v-if="deepConfig.footerTips" class="m-t16" v-html="deepConfig.footerTips"></div>
     </a-form>
@@ -149,12 +161,18 @@ const deepConfig = reactive(props.config);
 /**
  * 添加数据
  */
-const addRow = () => deepConfig.data.push({});
+const addRow = () => {
+  if (deepConfig.readOnly) return;
+  deepConfig.data.push({});
+};
 
 /**
  * 删除数据
  */
-const deleteRow = (index: number) => deepConfig.data.splice(index, 1);
+const deleteRow = (index: number) => {
+  if (deepConfig.readOnly) return;
+  deepConfig.data.splice(index, 1);
+};
 
 /**
  * 表单切换
@@ -169,6 +187,7 @@ const onChange = (column: any, index: number) => {
  * 校验通过提交数据
  */
 const onCheck = async () => {
+  if (deepConfig.readOnly) return;
   try {
     await formRef.value.validate();
     deepConfig.disabled = true;

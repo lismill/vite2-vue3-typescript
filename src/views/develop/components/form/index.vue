@@ -1,13 +1,19 @@
 <template>
   <div class="bg-ffffff p-16">
     <l-form :config="deepConfig">
-      <template #tableEdit="{data, item}">
-        <p class="m-b8">我是自定义插槽 - 编辑表格 - {{ data[item.name] }}</p>
-        <l-table-edit :config="deepTableEditConfig" @update:table:edit="updateTableEdit"></l-table-edit>
+      <template #tableEdit="{form, item}">
+        <p class="m-b8">我是自定义插槽 - 编辑表格 - {{ form.data[item.name] }}</p>
+        <l-table-edit
+          :config="{
+            ...deepTableEditConfig,
+            readOnly: form.disabled,
+          }"
+          @update:table:edit="updateTableEdit"
+        ></l-table-edit>
       </template>
-      <template #tableChoose="{data, item}">
-        <p class="m-b8">我是自定义插槽 - 选择表格 - {{ data[item.name] }}</p>
-        <div class="bg-ffffff">
+      <template #tableChoose="{form, item}">
+        <p class="m-b8">我是自定义插槽 - 选择表格 - {{ form.data[item.name] }}</p>
+        <div v-if="!form.disabled" class="bg-ffffff">
           <a-button
             type="primary"
             @click="
@@ -58,6 +64,7 @@ deepConfig.value.form.data = {
       },
     },
   ],
+  tableChoose: [{a: 1}],
 };
 
 const deepTableEditConfig = ref(tableEditConfig);

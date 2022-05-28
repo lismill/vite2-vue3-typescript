@@ -5,7 +5,10 @@
       v-model="valueHtml"
       style="overflow-y: hidden"
       :style="{height: `${height}px`}"
-      :default-config="editorConfig"
+      :default-config="{
+        ...editorConfig,
+        readOnly: disabled,
+      }"
       :mode="mode"
       @on-created="handleCreated"
       @on-change="handleChange"
@@ -22,6 +25,7 @@ import "@wangeditor/editor/dist/css/style.css";
 const props = withDefaults(
   defineProps<{
     content?: string;
+    disabled?: boolean;
     mode?: "normal" | "simple";
     height?: number;
     toolbarConfig?: any;
@@ -29,10 +33,11 @@ const props = withDefaults(
   }>(),
   {
     content: "<p>hello</p>",
+    disabled: false,
     mode: "simple",
     height: 360,
     toolbarConfig: {},
-    editorConfig: {placeholder: "请输入内容..."},
+    editorConfig: {placeholder: "请输入内容...", readOnly: true},
   },
 );
 const emits = defineEmits(["change"]);

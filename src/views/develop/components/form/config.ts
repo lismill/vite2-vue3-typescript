@@ -160,6 +160,7 @@ export default {
         },
         {type: "daterange", label: "活动时间", name: "daterange", others: {}},
         {type: "daterange", label: "活动时间范围", name: "rangeTime", others: {showTime: true}},
+        {type: "editor", label: "富文本编辑器", name: "editor", others: {}},
       ],
     },
   ],
