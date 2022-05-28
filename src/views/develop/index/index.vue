@@ -36,8 +36,8 @@ import DemoDayjs from "./dayjs.vue";
 import DemoOpenTargetWindow from "./open-target-window.vue";
 import DemoDownloadFile from "./download-file.vue";
 import DemoUploadFile from "./upload-file.vue";
-import DemoTableEdit from "../components/table-edit/index.vue";
-import DemoTableChoose from "../components/table-choose/index.vue";
+import DemoTableEdit from "../table-edit/index.vue";
+import DemoTableChoose from "../table-choose/index.vue";
 import DemoVuedraggable from "./vuedraggable.vue";
 import DemoEmpty from "./empty.vue";
 </script>

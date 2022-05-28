@@ -59,7 +59,7 @@ export const SIDER_ROUTES = (() => {
 
 // 缓存的菜单
 export const KEEPALIVE_ROUTES = (() => {
-  const KEEPALIVES: Array<string> = ["Layout"];
+  const KEEPALIVES: Array<string> = [];
   function reduceKeepAlive(routes: any) {
     routes.forEach((item: any) => {
       item?.meta?.keepAlive && KEEPALIVES.push(item.meta.keepAlive);

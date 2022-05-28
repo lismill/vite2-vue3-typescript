@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import DemoVuedraggable from "../components/vuedraggable/index.vue";
+import DemoVuedraggable from "../vuedraggable/index.vue";
 </script>
