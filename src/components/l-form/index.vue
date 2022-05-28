@@ -181,6 +181,7 @@
         </a-row>
       </div>
       <div
+        v-if="!deepConfig.form.disabled"
         class="fixed-operates"
         :style="{
           left: USE_STORE_COMMON.collapsed ? '77px' : '217px',
