@@ -1,1 +1,0 @@
-import{_,d as t,u as o,ay as c,az as n,o as r,c as p,b as d,aA as i}from"./index.3f2fd757.js";const u={class:"redirect"},E=t({setup(l){const e=o(),s=c();return n().addKeepAlives(s.query.keepalive),e.back(),(R,m)=>{const a=i;return r(),p("div",u,[d(a)])}}});var S=_(E,[["__scopeId","data-v-291bbd9a"]]);export{S as default};
