@@ -106,4 +106,10 @@ const clickOperate = (item: any) => {
   right: 21px;
   transition: all 0.22s;
 }
+.ant-pagination-prev,
+.ant-pagination-next,
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
+  display: inline-grid;
+}
 </style>

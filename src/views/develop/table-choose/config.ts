@@ -58,4 +58,13 @@ export default {
   modal: {
     width: "1200px",
   },
+  // 底部栏
+  footer: {
+    pagination: {
+      total: 0,
+      currentPage: 1,
+      pageSize: 10,
+      pageSizes: [10, 20, 30, 50, 100],
+    },
+  },
 };
