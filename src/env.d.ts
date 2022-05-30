@@ -9,3 +9,4 @@ declare module "*.vue" {
 declare module "qs";
 declare module "nprogress";
 declare module "qrcode";
+declare module "lodash";
