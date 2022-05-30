@@ -25,6 +25,7 @@
     <a-card title="选择数据" size="small" hoverable>
       <demo-table-choose></demo-table-choose>
     </a-card>
+    <demo-lodash></demo-lodash>
     <demo-dayjs></demo-dayjs>
     <a-card title="vuedraggable" size="small" hoverable>
       <vuedraggable></vuedraggable>
@@ -42,6 +43,7 @@ import DemoOpenTargetWindow from "./open-target-window.vue";
 import DemoDownloadFile from "./download-file.vue";
 import DemoUploadFile from "./upload-file.vue";
 import DemoEmpty from "./empty.vue";
+import DemoLodash from "./lodash.vue";
 import DemoTableEdit from "../table-edit/index.vue";
 import DemoTableChoose from "../table-choose/index.vue";
 import Vuedraggable from "../vuedraggable/index.vue";
