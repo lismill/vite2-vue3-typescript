@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-ffffff p-16">
+  <a-card title="自定义指令 - 可拖拽弹出框" size="small" hoverable>
     <a-button type="primary" @click="visible = true">可拖拽弹出框</a-button>
     <a-modal
       v-model:visible="visible"
@@ -15,7 +15,7 @@
         <p v-for="item in 6" :key="item">content...</p>
       </div>
     </a-modal>
-  </div>
+  </a-card>
 </template>
 
 <script setup lang="ts">

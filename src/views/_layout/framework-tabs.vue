@@ -73,7 +73,8 @@ const closeAll = () => {
 };
 
 // 设置标签页
-const changeTabs = () => {
+const changeTabs = (): void => {
+  if (ROUTE.name === "/framework/redirect") return;
   USE_STORE_TABS.changeTabs({
     path: ROUTE.path,
     title: ROUTE.meta?.title,

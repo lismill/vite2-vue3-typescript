@@ -1,4 +1,5 @@
 import Framework from "@/views/_layout/framework.vue";
+import Layout from "@/views/_layout/index.vue";
 
 export default {
   path: "/develop",
@@ -67,68 +68,109 @@ export default {
       },
     },
     {
-      path: "modal-drag",
-      name: "/develop/modal-drag",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/modal-drag/index.vue"),
+      path: "others",
+      name: "/develop/others/jsx",
+      redirect: "",
       meta: {
-        title: "拖拽弹出框",
+        title: "其他组件",
       },
+      component: Layout,
+      children: [
+        {
+          path: "jsx",
+          name: "/develop/others/jsx",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/others/tsx"),
+          meta: {
+            title: "JSX",
+          },
+        },
+        {
+          path: "iframe",
+          name: "/develop/others/iframe",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/others/iframe/index.vue"),
+          meta: {
+            title: "iframe",
+          },
+        },
+        {
+          path: "vuedraggable",
+          name: "/develop/others/vuedraggable",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/others/vuedraggable/index.vue"),
+          meta: {
+            title: "vuedraggable",
+          },
+        },
+        {
+          path: "qrcode",
+          name: "/develop/others/qrcode",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/others/qrcode/index.vue"),
+          meta: {
+            title: "QRCode",
+          },
+        },
+        {
+          path: "editor",
+          name: "/develop/others/editor",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/others/editor/index.vue"),
+          meta: {
+            title: "富文本编辑器",
+          },
+        },
+      ],
     },
     {
-      path: "jsx",
-      name: "/develop/jsx",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/tsx"),
+      path: "charts",
+      name: "/charts",
+      redirect: "/develop/charts/echarts",
       meta: {
-        title: "JSX",
+        title: "图表组件",
       },
+      component: Layout,
+      children: [
+        {
+          path: "echarts",
+          name: "/develop/charts/echarts",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/charts/echarts/index.vue"),
+          meta: {
+            title: "ECharts",
+          },
+        },
+        {
+          path: "amap",
+          name: "/develop/charts/amap",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/charts/amap/index.vue"),
+          meta: {
+            title: "高德地图",
+          },
+        },
+      ],
     },
     {
-      path: "iframe",
-      name: "/develop/iframe",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/iframe/index.vue"),
+      path: "directive",
+      name: "/directive",
+      redirect: "/develop/directive/modal-drag",
       meta: {
-        title: "iframe",
+        title: "自定义指令",
       },
-    },
-    {
-      path: "vuedraggable",
-      name: "/develop/vuedraggable",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/vuedraggable/index.vue"),
-      meta: {
-        title: "vuedraggable",
-      },
-    },
-    {
-      path: "echarts",
-      name: "/develop/echarts",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/echarts/index.vue"),
-      meta: {
-        title: "ECharts",
-      },
-    },
-    {
-      path: "qrcode",
-      name: "/develop/qrcode",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/qrcode/index.vue"),
-      meta: {
-        title: "QRCode",
-      },
-    },
-    {
-      path: "editor",
-      name: "/develop/editor",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/editor/index.vue"),
-      meta: {
-        title: "富文本编辑器",
-      },
-    },
-    {
-      path: "amap",
-      name: "/develop/amap",
-      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/amap/index.vue"),
-      meta: {
-        title: "高德地图",
-      },
+      component: Layout,
+      children: [
+        {
+          path: "modal-drag",
+          name: "/develop/directive/modal-drag",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/directive/modal-drag/index.vue"),
+          meta: {
+            title: "拖拽弹出框",
+          },
+        },
+        {
+          path: "permission",
+          name: "/develop/directive/permission",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/directive/permission/index.vue"),
+          meta: {
+            title: "标签权限",
+          },
+        },
+      ],
     },
   ],
 };

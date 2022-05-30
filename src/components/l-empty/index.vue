@@ -1,5 +1,5 @@
 <template>
-  <a-empty class="a-empty" :image="image">
+  <a-empty class="a-empty" :image="image" :style="{padding: padding}">
     <template #description>
       <div class="desc m-t6 m-b16">{{ desc }}</div>
       <slot></slot>
@@ -14,17 +14,18 @@ withDefaults(
   defineProps<{
     image?: any;
     desc?: string;
+    padding?: string;
   }>(),
   {
     image: Empty.PRESENTED_IMAGE_DEFAULT,
     desc: "暂无数据",
+    padding: "80px 0",
   },
 );
 </script>
 
 <style lang="scss" scoped>
 .a-empty {
-  padding: 100px 0;
   .desc {
     color: #999999;
   }
