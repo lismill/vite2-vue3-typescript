@@ -11,7 +11,9 @@
       @cancel="ok"
       @ok="ok"
     >
-      <l-table :config="deepConfig" @update:config="updateConfig"></l-table>
+      <div v-modal-drag>
+        <l-table :config="deepConfig" @update:config="updateConfig"></l-table>
+      </div>
     </a-modal>
   </div>
 </template>

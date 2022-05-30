@@ -12,6 +12,9 @@
         `}}
       </div>
     </a-card>
+    <a-card title="自定义指令 - 可拖拽弹出框" size="small" hoverable>
+      <modal-drag></modal-drag>
+    </a-card>
     <demo-local-storage></demo-local-storage>
     <demo-open-target-window></demo-open-target-window>
     <demo-download-file></demo-download-file>
@@ -23,7 +26,9 @@
       <demo-table-choose></demo-table-choose>
     </a-card>
     <demo-dayjs></demo-dayjs>
-    <demo-vuedraggable></demo-vuedraggable>
+    <a-card title="vuedraggable" size="small" hoverable>
+      <vuedraggable></vuedraggable>
+    </a-card>
     <demo-empty></demo-empty>
   </div>
 </template>
@@ -36,13 +41,11 @@ import DemoDayjs from "./dayjs.vue";
 import DemoOpenTargetWindow from "./open-target-window.vue";
 import DemoDownloadFile from "./download-file.vue";
 import DemoUploadFile from "./upload-file.vue";
+import DemoEmpty from "./empty.vue";
 import DemoTableEdit from "../table-edit/index.vue";
 import DemoTableChoose from "../table-choose/index.vue";
-import DemoVuedraggable from "./vuedraggable.vue";
-import DemoEmpty from "./empty.vue";
-</script>
-<script lang="ts">
-export default {name: "DevelopIndex"};
+import Vuedraggable from "../vuedraggable/index.vue";
+import ModalDrag from "../modal-drag/index.vue";
 </script>
 
 <style lang="scss" scoped>

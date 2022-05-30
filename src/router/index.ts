@@ -19,6 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "login" */ "@/views/_login/index.vue"),
     meta: {
       title: "login",
+      hidden: true,
     },
   },
   /**
@@ -28,6 +29,9 @@ const routes: Array<RouteRecordRaw> = [
     path: "/:catchAll(.*)",
     name: "not-found",
     component: () => import(/* webpackChunkName: "not-found" */ "@/views/_not-found/index.vue"),
+    meta: {
+      hidden: true,
+    },
   },
 ];
 

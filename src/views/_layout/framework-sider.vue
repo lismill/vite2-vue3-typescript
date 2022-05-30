@@ -123,4 +123,10 @@ onMounted(() => resetOpenKeys());
   position: relative;
   top: 3px;
 }
+.ant-menu-submenu-popup {
+  .ifyicon {
+    position: relative;
+    top: 0px;
+  }
+}
 </style>

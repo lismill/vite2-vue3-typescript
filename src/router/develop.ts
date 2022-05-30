@@ -16,7 +16,6 @@ export default {
       component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/index/index.vue"),
       meta: {
         title: "示例展示",
-        keepAlive: "DevelopIndex",
         // icon: "bx:camera-home",
       },
     },
@@ -65,6 +64,14 @@ export default {
       component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/form/index.vue"),
       meta: {
         title: "表单组件",
+      },
+    },
+    {
+      path: "modal-drag",
+      name: "/develop/modal-drag",
+      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/modal-drag/index.vue"),
+      meta: {
+        title: "拖拽弹出框",
       },
     },
     {
