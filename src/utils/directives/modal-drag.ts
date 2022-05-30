@@ -82,7 +82,8 @@ export default {
         // 保存边界位置
         SAVE_X > BOUND_X && (SAVE_X = BOUND_X);
         SAVE_X < -BOUND_X && (SAVE_X = -BOUND_X);
-        MOVE_Y + SAVE_X < -100 && (SAVE_X = 0);
+        MOVE_Y + SAVE_Y > BOUND_Y && (SAVE_Y = BOUND_Y);
+        MOVE_Y + SAVE_Y < -100 && (SAVE_Y = -100);
       };
     }
   },
