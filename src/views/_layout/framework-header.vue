@@ -28,6 +28,11 @@
     <div class="m-r16">
       <a>Help</a>
     </div>
+    <div class="github m-r16">
+      <a href="https://github.com/lismill/vite2-vue3.x-typescript-framework" target="_blank">
+        <l-ify-icon name="akar-icons:github-fill" size="20" style="top: 5px"></l-ify-icon>
+      </a>
+    </div>
     <div
       class="full-screen m-r16"
       @click="
@@ -133,3 +138,15 @@ watch(
 
 onMounted(() => resetBreadcrumb());
 </script>
+
+<style scoped lang="scss">
+.github {
+  cursor: pointer;
+  &:hover {
+    opacity: 0.85;
+  }
+  a:hover {
+    color: #333333;
+  }
+}
+</style>
