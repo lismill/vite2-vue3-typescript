@@ -107,9 +107,14 @@
 
   <!-- 自定义指令 - 标签权限 -->
   <a-card class="card" title="自定义指令 - 标签权限" size="small" hoverable>
-    <div v-permission="['all']">
-      权限判断: {{`
+    <div>
+      {{`
       <div v-permission="['all']">权限判断</div>
+      `}}
+    </div>
+    <div class="m-t10">
+      {{`
+      <div v-permission="['all', '000001', '000002']">权限判断</div>
       `}}
     </div>
   </a-card>
@@ -136,12 +141,37 @@
 
   <!-- 三方插件 - 日期插件 - dayjs -->
   <a-card class="card" title="三方插件 - 日期插件 - dayjs" size="small" hoverable>
-    <a-space direction="vertical">
-      <p>https://dayjs.fenxianglu.cn/category/</p>
-      <p>{{ day }}</p>
-      <p>{{ day.format("YYYY-MM-DD") }}</p>
-      <p>{{ day.format("YYYY-MM-DD HH:MM:ss") }}</p>
-    </a-space>
+    <div class="m-b16">
+      <a-alert type="info">
+        <template #message>详细文档</template>
+        <template #description>https://dayjs.fenxianglu.cn/category</template>
+      </a-alert>
+    </div>
+    <div class="m-b16">
+      <a-alert type="info">
+        <template #message>
+          <p>格式化日期</p>
+          <p>- day</p>
+        </template>
+        <template #description>{{ day }}</template>
+      </a-alert>
+    </div>
+    <div class="m-b16">
+      <a-alert type="info">
+        <template #message>
+          <p>格式化日期</p>
+          <p>- day.format("YYYY-MM-DD")</p>
+        </template>
+        <template #description>- {{ day.format("YYYY-MM-DD") }}</template>
+      </a-alert>
+    </div>
+    <a-alert type="info">
+      <template #message>
+        <p>格式化日期</p>
+        <p>- day.format("YYYY-MM-DD HH:MM:ss")</p>
+      </template>
+      <template #description>{{ day.format("YYYY-MM-DD HH:MM:ss") }}</template>
+    </a-alert>
   </a-card>
 
   <!-- 三方插件 - 日期插件 - Lodash -->
