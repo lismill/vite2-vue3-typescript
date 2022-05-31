@@ -115,8 +115,13 @@
   </a-card>
 
   <!-- 自定义指令 - 可拖拽弹出框 -->
-  <a-card class="card" title="自定义指令 - 可拖拽弹出框" size="small" hoverable>
+  <div class="card">
     <modal-drag></modal-drag>
+  </div>
+
+  <!-- 三方插件 - 复制到剪贴板 - vue-clipboard3 -->
+  <a-card class="card" title="三方插件 - 复制到剪贴板 - vue-clipboard3" size="small" hoverable>
+    <a-button type="primary" @click="clipboard('Hello,')">复制 'Hello,' 到剪贴板</a-button>
   </a-card>
 
   <!-- 三方插件 - 拖拽排序 - vuedraggable -->
@@ -146,6 +151,7 @@
 import {ref, reactive} from "vue";
 import _ from "lodash";
 import {message} from "ant-design-vue";
+import useClipboard from "vue-clipboard3";
 import dayjs from "dayjs";
 import storage from "@/utils/local-storage";
 import {openTargetWindow} from "@/api/develop";
@@ -214,6 +220,19 @@ const handleStorage = {
     storage.clear();
     message.success(`清空成功`);
   },
+};
+
+/**
+ * 三方插件 - 复制到剪贴板 - vue-clipboard3
+ */
+const {toClipboard} = useClipboard();
+const clipboard = async (text: string) => {
+  try {
+    await toClipboard(`${text} - ${Date.now()}`);
+    message.success(`${text} 已复制到剪贴板`);
+  } catch (e) {
+    console.error(e);
+  }
 };
 
 /**
