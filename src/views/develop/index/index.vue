@@ -119,6 +119,11 @@
     <modal-drag></modal-drag>
   </div>
 
+  <!-- 自定义指令 - 数字格式化 -->
+  <a-card class="card" title="自定义指令 - 数字格式化" size="small" hoverable>
+    <number-format></number-format>
+  </a-card>
+
   <!-- 三方插件 - 复制到剪贴板 - vue-clipboard3 -->
   <a-card class="card" title="三方插件 - 复制到剪贴板 - vue-clipboard3" size="small" hoverable>
     <a-button type="primary" @click="clipboard('Hello,')">复制 'Hello,' 到剪贴板</a-button>
@@ -157,6 +162,7 @@ import storage from "@/utils/local-storage";
 import {openTargetWindow} from "@/api/develop";
 import {downloadByUrl, downloadByData} from "@/api/common/download";
 import ModalDrag from "../directive/modal-drag/index.vue";
+import NumberFormat from "../directive/number-format/index.vue";
 import TableChoose from "../table-choose/index.vue";
 import TableEdit from "../table-edit/index.vue";
 import vuedraggable from "../others/vuedraggable/index.vue";

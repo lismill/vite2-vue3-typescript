@@ -170,6 +170,15 @@ export default {
             title: "标签权限",
           },
         },
+        {
+          path: "number-format",
+          name: "/develop/directive/number-format",
+          component: () =>
+            import(/* webpackChunkName: "develop" */ "@/views/develop/directive/number-format/index.vue"),
+          meta: {
+            title: "数字格式化",
+          },
+        },
       ],
     },
   ],
