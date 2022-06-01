@@ -1,7 +1,7 @@
 import {DirectiveBinding} from "vue";
 
 export default {
-  name: "money",
+  name: "number-format",
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     if (!binding.value) return;
 

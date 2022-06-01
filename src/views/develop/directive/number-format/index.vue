@@ -5,9 +5,9 @@
       <a-alert type="info">
         <template #message>纯数字格式</template>
         <template #description>
-          {{`<span v-money="{money: 653791.2981, style: 'decimal'}" class="color-danger"></span>`}}
+          {{`<span v-number-format="{money: 653791.2981, style: 'decimal'}" class="color-danger"></span>`}}
           <div class="m-t16">
-            - 653791.2981 => <span v-money="{money: 653791.2981, style: 'decimal'}" class="color-danger"></span>
+            - 653791.2981 => <span v-number-format="{money: 653791.2981, style: 'decimal'}" class="color-danger"></span>
           </div>
         </template>
       </a-alert>
@@ -17,9 +17,9 @@
       <a-alert type="info">
         <template #message>百分比格式</template>
         <template #description>
-          {{`<span v-money="{money: 653791.2981, style: 'percent'}" class="color-danger"></span>`}}
+          {{`<span v-number-format="{money: 653791.2981, style: 'percent'}" class="color-danger"></span>`}}
           <div class="m-t16">
-            - 653791.2981 => <span v-money="{money: 653791.2981, style: 'percent'}" class="color-danger"></span>
+            - 653791.2981 => <span v-number-format="{money: 653791.2981, style: 'percent'}" class="color-danger"></span>
           </div>
         </template>
       </a-alert>
@@ -29,9 +29,10 @@
       <a-alert type="info">
         <template #message>货币格式</template>
         <template #description>
-          {{`<span v-money="{money: 653791.2981, style: 'currency'}" class="color-danger"></span>`}}
+          {{`<span v-number-format="{money: 653791.2981, style: 'currency'}" class="color-danger"></span>`}}
           <div class="m-t16">
-            - 653791.2981 => <span v-money="{money: 653791.2981, style: 'currency'}" class="color-danger"></span>
+            - 653791.2981 =>
+            <span v-number-format="{money: 653791.2981, style: 'currency'}" class="color-danger"></span>
           </div>
         </template>
       </a-alert>
@@ -41,10 +42,11 @@
       <a-alert type="info">
         <template #message>保留3位小数</template>
         <template #description>
-          {{`<span v-money="{money: 653791.2981, style: 'currency', decimals: 3}" class="color-danger"></span>`}}
+          {{`<span v-number-format="{money: 653791.2981, style: 'currency', decimals: 3}" class="color-danger"></span
+          >`}}
           <div class="m-t16">
             - 653791.2981 =>
-            <span v-money="{money: 653791.2981, style: 'currency', decimals: 3}" class="color-danger"></span>
+            <span v-number-format="{money: 653791.2981, style: 'currency', decimals: 3}" class="color-danger"></span>
           </div>
         </template>
       </a-alert>
@@ -54,10 +56,17 @@
       <a-alert type="info">
         <template #message>货币格式 - 人民币符号</template>
         <template #description>
-          {{`<span v-money="{money: 653791.2981, style: 'currency', currency: 'CNY'}" class="color-danger"></span>`}}
+          {{`<span
+            v-number-format="{money: 653791.2981, style: 'currency', currency: 'CNY'}"
+            class="color-danger"
+          ></span
+          >`}}
           <div class="m-t16">
             - 653791.2981 =>
-            <span v-money="{money: 653791.2981, style: 'currency', currency: 'CNY'}" class="color-danger"></span>
+            <span
+              v-number-format="{money: 653791.2981, style: 'currency', currency: 'CNY'}"
+              class="color-danger"
+            ></span>
           </div>
         </template>
       </a-alert>
@@ -67,10 +76,17 @@
       <a-alert type="info">
         <template #message>货币格式 - 美元符号</template>
         <template #description>
-          {{`<span v-money="{money: 653791.2981, style: 'currency', currency: 'USD'}" class="color-danger"></span>`}}
+          {{`<span
+            v-number-format="{money: 653791.2981, style: 'currency', currency: 'USD'}"
+            class="color-danger"
+          ></span
+          >`}}
           <div class="m-t16">
             - 653791.2981 =>
-            <span v-money="{money: 653791.2981, style: 'currency', currency: 'USD'}" class="color-danger"></span>
+            <span
+              v-number-format="{money: 653791.2981, style: 'currency', currency: 'USD'}"
+              class="color-danger"
+            ></span>
           </div>
         </template>
       </a-alert>
@@ -79,10 +95,11 @@
     <a-alert type="info">
       <template #message>货币格式 - 欧元符号</template>
       <template #description>
-        {{`<span v-money="{money: 653791.2981, style: 'currency', currency: 'EUR'}" class="color-danger"></span>`}}
+        {{`<span v-number-format="{money: 653791.2981, style: 'currency', currency: 'EUR'}" class="color-danger"></span
+        >`}}
         <div class="m-t16">
           - 653791.2981 =>
-          <span v-money="{money: 653791.2981, style: 'currency', currency: 'EUR'}" class="color-danger"></span>
+          <span v-number-format="{money: 653791.2981, style: 'currency', currency: 'EUR'}" class="color-danger"></span>
         </div>
       </template>
     </a-alert>

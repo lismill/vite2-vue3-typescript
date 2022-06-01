@@ -644,6 +644,136 @@ const visible = ref(false);
 </script>
 ```
 
+## 自定义指令 - 数字格式化
+
+### 配置
+
+`src/utils/directives/number-format.ts`
+
+```
+import {DirectiveBinding} from "vue";
+
+export default {
+  name: "number-format",
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
+    if (!binding.value) return;
+
+    // 获取参数
+    const {lang, money, decimals, style, currency, currencyDisplay} = binding.value;
+    if (!money) return;
+
+    // 数字格式化
+    const format = new Intl.NumberFormat(lang ?? "zh-CN", {
+      style: style ?? "currency", // decimal | currency | percent | unit
+      currency: currency ?? "CNY", // 货币符号
+      currencyDisplay: currencyDisplay ?? "symbol", // 本地化 | 国际化
+      minimumFractionDigits: decimals ?? 2, // 小数位数的最小数目
+      maximumFractionDigits: decimals ?? 2, // 小数位数的最大数目
+    }).format(Number(money));
+
+    // 设置数据
+    // eslint-disable-next-line no-param-reassign
+    el.innerText = format ?? "";
+  },
+};
+```
+
+### 使用
+
+`src/views/develop/directive/number-format/index.vue`
+
+```
+<!-- 纯数字格式 -->
+<div class="m-b16">
+  <a-alert type="info">
+    <template #message>纯数字格式</template>
+    <template #description>
+      {{`<span number-format="{money: 653791.2981, style: 'decimal'}" class="color-danger"></span>`}}
+      <div class="m-t16">
+        - 653791.2981 => <span number-format="{money: 653791.2981, style: 'decimal'}" class="color-danger"></span>
+      </div>
+    </template>
+  </a-alert>
+</div>
+<!-- 百分比格式 -->
+<div class="m-b16">
+  <a-alert type="info">
+    <template #message>百分比格式</template>
+    <template #description>
+      {{`<span number-format="{money: 653791.2981, style: 'percent'}" class="color-danger"></span>`}}
+      <div class="m-t16">
+        - 653791.2981 => <span number-format="{money: 653791.2981, style: 'percent'}" class="color-danger"></span>
+      </div>
+    </template>
+  </a-alert>
+</div>
+<!-- 货币格式 -->
+<div class="m-b16">
+  <a-alert type="info">
+    <template #message>货币格式</template>
+    <template #description>
+      {{`<span number-format="{money: 653791.2981, style: 'currency'}" class="color-danger"></span>`}}
+      <div class="m-t16">
+        - 653791.2981 => <span number-format="{money: 653791.2981, style: 'currency'}" class="color-danger"></span>
+      </div>
+    </template>
+  </a-alert>
+</div>
+<!-- 保留3位小数 -->
+<div class="m-b16">
+  <a-alert type="info">
+    <template #message>保留3位小数</template>
+    <template #description>
+      {{`<span number-format="{money: 653791.2981, style: 'currency', decimals: 3}" class="color-danger"></span>`}}
+      <div class="m-t16">
+        - 653791.2981 =>
+        <span number-format="{money: 653791.2981, style: 'currency', decimals: 3}" class="color-danger"></span>
+      </div>
+    </template>
+  </a-alert>
+</div>
+<!-- 货币格式 - 人民币符号 -->
+<div class="m-b16">
+  <a-alert type="info">
+    <template #message>货币格式 - 人民币符号</template>
+    <template #description>
+      {{`<span number-format="{money: 653791.2981, style: 'currency', currency: 'CNY'}" class="color-danger"></span
+      >`}}
+      <div class="m-t16">
+        - 653791.2981 =>
+        <span number-format="{money: 653791.2981, style: 'currency', currency: 'CNY'}" class="color-danger"></span>
+      </div>
+    </template>
+  </a-alert>
+</div>
+<!-- 货币格式 - 美元符号 -->
+<div class="m-b16">
+  <a-alert type="info">
+    <template #message>货币格式 - 美元符号</template>
+    <template #description>
+      {{`<span number-format="{money: 653791.2981, style: 'currency', currency: 'USD'}" class="color-danger"></span
+      >`}}
+      <div class="m-t16">
+        - 653791.2981 =>
+        <span number-format="{money: 653791.2981, style: 'currency', currency: 'USD'}" class="color-danger"></span>
+      </div>
+    </template>
+  </a-alert>
+</div>
+<!-- 货币格式 - 欧元符号 -->
+<a-alert type="info">
+  <template #message>货币格式 - 欧元符号</template>
+  <template #description>
+    {{`<span number-format="{money: 653791.2981, style: 'currency', currency: 'EUR'}" class="color-danger"></span
+    >`}}
+    <div class="m-t16">
+      - 653791.2981 =>
+      <span number-format="{money: 653791.2981, style: 'currency', currency: 'EUR'}" class="color-danger"></span>
+    </div>
+  </template>
+</a-alert>
+```
+
 ## 封装 localStorage
 
 ### 配置
