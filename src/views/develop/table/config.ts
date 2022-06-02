@@ -73,11 +73,13 @@ export default {
         width: 460,
         dataIndex: "name",
         ellipsis: true,
+        sorter: (a: any, b: any) => a.name > b.name,
       },
       {
         title: "年龄",
         width: 300,
         dataIndex: "age",
+        sorter: (a: any, b: any) => a.age - b.age,
       },
       {
         title: "日期",

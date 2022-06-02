@@ -8,7 +8,15 @@
       @change="handleChange"
     >
       <div v-if="fileLists.length < defaultConfig.maxCount">
-        <span class="plus" style="font-size: 20px; font-weight: 500; color: #888888">+</span>
+        <template v-if="defaultConfig.listType === 'picture-card'">
+          <span class="plus" style="font-size: 20px; font-weight: 500; color: #888888">+</span>
+        </template>
+        <template v-else>
+          <a-button class="flex">
+            <l-ify-icon name="carbon:add" size="20" style="margin-left: -6px"></l-ify-icon>
+            选择文件
+          </a-button>
+        </template>
       </div>
     </a-upload>
     <a-modal :visible="preview.visible" :title="preview.title" :footer="null" @cancel="handlePreviewCancel">
