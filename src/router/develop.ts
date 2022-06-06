@@ -64,7 +64,15 @@ export default {
       name: "/develop/form",
       component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/form/index.vue"),
       meta: {
-        title: "表单组件",
+        title: "基础表单",
+      },
+    },
+    {
+      path: "form-dialog",
+      name: "/develop/form-dialog",
+      component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/form-dialog/index.vue"),
+      meta: {
+        title: "弹出表单",
       },
     },
     {

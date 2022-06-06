@@ -1,5 +1,12 @@
 <template>
-  <div v-if="deepConfig?.sections?.length > 0 && deepConfig?.form?.data" class="l-form p-b56">
+  <div
+    v-if="deepConfig?.sections?.length > 0 && deepConfig?.form?.data"
+    class="l-form"
+    :class="{'p-b56': !deepConfig?.form?.dialog}"
+    :style="{
+      minHeight: deepConfig?.form?.dialog ? 'auto' : 'calc(100vh - 130px)',
+    }"
+  >
     <a-form
       ref="formRef"
       name="l-form"
@@ -191,6 +198,7 @@
         class="fixed-operates"
         :style="{
           left: USE_STORE_COMMON.collapsed ? '77px' : '217px',
+          position: deepConfig?.form?.dialog ? 'static' : 'fixed',
         }"
       >
         <template v-if="!config?.form?.disabled">
@@ -235,22 +243,25 @@ import formTooltip from "./form-tooltip.vue";
 const props = defineProps<{
   config: any;
 }>();
-const emit = defineEmits(["click:operate"]);
+const emit = defineEmits(["click:operate", "on-finish"]);
+defineExpose({resetForm});
 const deepConfig: any = ref(props.config);
 const USE_STORE_COMMON = useStoreCommon();
 const formRef: any = ref<FormInstance>();
 
 // 表单提交
 const onFinish = () => {
-  console.log("onFinish", deepConfig.value.form.data);
-};
-// 表单提交失败
-const onFinishFailed = () => {
-  message.error("请完整填写表单");
+  resetForm();
+  emit("on-finish", deepConfig.value.form.data);
 };
 
+// 表单提交失败
+const onFinishFailed = () => message.error("请完整填写表单");
+
 // 表单重置
-const resetForm = () => formRef.value.resetFields();
+function resetForm() {
+  formRef.value.resetFields();
+}
 
 // 监听属性变化
 watch(
@@ -275,7 +286,6 @@ watch(
   }
 }
 .l-form {
-  min-height: calc(100vh - 130px);
   :deep(.ant-form-horizontal .ant-form-item-label) {
     width: 120px;
     padding-right: 8px;
@@ -292,7 +302,6 @@ watch(
   }
 
   .fixed-operates {
-    position: fixed;
     padding: 16px;
     bottom: 0;
     right: 21px;

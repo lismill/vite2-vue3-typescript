@@ -1,6 +1,6 @@
 <template>
   <div class="bg-ffffff p-16">
-    <l-form :config="deepConfig">
+    <l-form :config="deepConfig" @on-finish="onFinish">
       <template #tableEdit="{form, item}">
         <p class="m-b8">我是自定义插槽 - 编辑表格 - {{ form.data[item.name] }}</p>
         <l-table-edit
@@ -95,6 +95,13 @@ const updateTableChoose = (data: any) => {
     message: "操作提示",
     description: JSON.stringify(data.table.selectedRows),
   });
+};
+
+/**
+ * 提交表单
+ */
+const onFinish = (data: any): void => {
+  console.log("finish", data);
 };
 </script>
 <style lang="scss" scoped></style>
