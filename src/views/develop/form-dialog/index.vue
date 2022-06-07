@@ -9,7 +9,9 @@
       :destroy-on-close="true"
       @cancel="form.resetForm()"
     >
-      <l-form ref="form" :config="config" @on-finish="onFinish"></l-form>
+      <div v-modal-drag>
+        <l-form ref="form" :config="config" @on-finish="onFinish"></l-form>
+      </div>
     </a-modal>
   </div>
 </template>
