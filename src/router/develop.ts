@@ -78,7 +78,7 @@ export default {
     {
       path: "others",
       name: "/develop/others/jsx",
-      redirect: "",
+      redirect: "/develop/others/jsx",
       meta: {
         title: "其他组件",
       },
