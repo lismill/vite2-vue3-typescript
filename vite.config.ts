@@ -101,5 +101,8 @@ export default ({mode, command}) => {
       jsxFragment: "Fragment",
       jsxInject: "import { h } from 'vue';",
     },
+    server: {
+      https: true,
+    },
   });
 };
