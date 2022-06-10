@@ -175,12 +175,13 @@ export default {
   path: "/${this.ROUTE_PATH}",
   component: Framework,
   redirect: "/${this.ROUTE_PATH}/index",
+  meta: {title: "${this.ROUTE_PATH}", icon: "mdi:dev-to"},
   children: [
     {
       path: "index",
       name: "/${this.ROUTE_PATH}/index",
       component: () => import("@/views/${this.ROUTE_PATH}/index.vue"),
-      meta: {title: "${this.ROUTE_PATH}", icon: "mdi:dev-to"},
+      meta: {title: "${this.ROUTE_PATH}"},
     },
   ],
 };
