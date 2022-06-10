@@ -12,9 +12,11 @@
     "build:development": "vue-tsc --noEmit --skipLibCheck && vite build --mode development",
     "build:test": "vue-tsc --noEmit --skipLibCheck && vite build --mode test",
     "build:production": "vue-tsc --noEmit --skipLibCheck && vite build --mode production",
+    "create:route": "node scripts/create-route/index.js",
     "preview": "npm run build && vite preview",
     "prepare": "husky install",
     "lint": "eslint \"src/**/*.{js,ts,jsx,vue}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,ts,jsx,vue}\"",
     "commit": "git add . && git cz"
   },
   "dependencies": {
