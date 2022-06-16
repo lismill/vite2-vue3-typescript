@@ -1,7 +1,11 @@
 export default {
+  // 配置表单基础信息
   form: {
-    // disabled: true,
-    // span: 24,
+    // 配置表单是否禁用
+    disabled: false,
+    // 配置表单一行显示几列
+    span: 24,
+    // 配置表单操作按钮
     operates: {
       header: [{name: "预览数据", others: {type: "primary"}}],
       footer: [
@@ -10,16 +14,22 @@ export default {
         {name: "删除数据", others: {type: "primary", danger: true}},
       ],
     },
+    // 配置表单默认数据
     data: {},
   },
+  // 配置表单结构和表单项
   sections: [
     {
+      // 配置区块
       title: "区块一",
+      // 配置区块项
       items: [
         {
+          // 配置文本
           type: "text",
           label: "文本",
           name: "text",
+          // 配置扩展 antdv 官方参数
           others: {},
         },
         {
