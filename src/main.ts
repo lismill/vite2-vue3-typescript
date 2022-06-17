@@ -4,12 +4,13 @@ import App from "@/App.vue";
 import router from "@/router";
 import {setupComponents} from "@/components/index";
 import {setupDirectives} from "./utils/directives";
+import {useEnvValue} from "@/hooks/useEnvValue";
 import "virtual:svg-icons-register";
 import "@purge-icons/generated";
 import "ant-design-vue/dist/antd.less";
 import "@/assets/styles";
 
-console.log(import.meta.env);
+console.log(useEnvValue());
 
 // app
 const app = createApp(App);

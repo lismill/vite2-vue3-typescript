@@ -1,12 +1,13 @@
 import axios, {AxiosRequestConfig} from "axios";
 import qs from "qs";
 import nprogress from "nprogress";
+import {useEnvValue} from "@/hooks/useEnvValue";
 import business from "./business";
 import "nprogress/nprogress.css";
 
 // 创建请求
 const service = axios.create({
-  baseURL: import.meta.env.BASE_URL,
+  baseURL: useEnvValue("BASE_URL") as string,
   headers: {
     "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
   },

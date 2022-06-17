@@ -81,6 +81,7 @@ import {useRoute, useRouter} from "vue-router";
 import screenfull from "screenfull";
 import useStoreCommon from "@/stores/common";
 import storage from "@/utils/local-storage";
+import {useEnvValue} from "@/hooks/useEnvValue";
 
 const props = withDefaults(
   defineProps<{
@@ -121,7 +122,7 @@ const resetBreadcrumb = () => {
 // 折叠菜单
 const trigger = () => {
   USE_STORE_COMMON.changeCollapsed(!props.collapsed);
-  storage.set(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_COLLAPSED`, !props.collapsed);
+  storage.set(`${useEnvValue("VITE_LOCAL_STORAGE_PREFIX")}_COLLAPSED`, !props.collapsed);
   emit("update:collapsed", !props.collapsed);
 };
 

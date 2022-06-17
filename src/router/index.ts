@@ -1,4 +1,5 @@
 import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router";
+import {useEnvValue} from "@/hooks/useEnvValue";
 
 // 自动导入当前目录下的路由配置
 const modules = import.meta.globEager("./*.ts");
@@ -50,8 +51,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   to.meta.title
-    ? (document.title = `${import.meta.env.VITE_NAME} | ${to.meta.title}`)
-    : (document.title = `${import.meta.env.VITE_NAME}`);
+    ? (document.title = `${useEnvValue("VITE_NAME")} | ${to.meta.title}`)
+    : (document.title = `${useEnvValue("VITE_NAME")}`);
   next();
 });
 

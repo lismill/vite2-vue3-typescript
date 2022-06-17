@@ -1,10 +1,11 @@
 import {defineStore} from "pinia";
 import storage from "@/utils/local-storage";
+import {useEnvValue} from "@/hooks/useEnvValue";
 
 const useStoreTabs = defineStore("STORE_TABS)", {
   state: () => {
     return {
-      tabs: storage.get(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_TABS`) ?? [
+      tabs: storage.get(`${useEnvValue("VITE_LOCAL_STORAGE_PREFIX")}_TABS`) ?? [
         {
           path: "/dashboard/index",
           title: "控制台",
@@ -14,13 +15,13 @@ const useStoreTabs = defineStore("STORE_TABS)", {
   },
   actions: {
     resetTabs() {
-      storage.set(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_TABS`, [
+      storage.set(`${useEnvValue("VITE_LOCAL_STORAGE_PREFIX")}_TABS`, [
         {
           path: "/dashboard/index",
           title: "控制台",
         },
       ]);
-      this.tabs = storage.get(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_TABS`);
+      this.tabs = storage.get(`${useEnvValue("VITE_LOCAL_STORAGE_PREFIX")}_TABS`);
     },
     changeTabs(tab: any) {
       if (!this.tabs.find((item: any) => item.path === tab.path)) {
@@ -34,7 +35,7 @@ const useStoreTabs = defineStore("STORE_TABS)", {
       return this.tabs[this.tabs.length - 1].path;
     },
     setLocalstorage() {
-      storage.set(`${import.meta.env.VITE_LOCAL_STORAGE_PREFIX}_TABS`, this.tabs);
+      storage.set(`${useEnvValue("VITE_LOCAL_STORAGE_PREFIX")}_TABS`, this.tabs);
     },
   },
 });
