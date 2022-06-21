@@ -199,6 +199,7 @@
         :style="{
           left: USE_STORE_COMMON.collapsed ? '77px' : '217px',
           position: deepConfig?.form?.dialog ? 'static' : 'fixed',
+          justifyContent: deepConfig.form?.dialog?.justify ?? 'flex-end',
         }"
       >
         <template v-if="!config?.form?.disabled">
@@ -214,8 +215,8 @@
               {{ header.name }}
             </a-button>
           </template>
-          <a-button class="m-lr4" type="primary" html-type="submit">提交</a-button>
           <a-button class="info m-lr4" type="primary" @click="resetForm">重置</a-button>
+          <a-button class="m-lr4" type="primary" html-type="submit">提交</a-button>
           <!-- footer -->
           <template v-if="config?.form?.operates?.footer">
             <a-button

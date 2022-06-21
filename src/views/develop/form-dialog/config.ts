@@ -3,6 +3,7 @@ export default {
     dialog: {
       visible: false,
       title: "创建弹出表单",
+      // justify: "center",
     },
     data: {},
   },
