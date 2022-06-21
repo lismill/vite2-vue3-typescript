@@ -53,6 +53,11 @@ img {
   align-items: flex-end;
 }
 
+// 鼠标样式
+.cursor-pointer {
+  cursor: pointer;
+}
+
 // 滚动调样式
 ::-webkit-scrollbar {
   border-radius: 4px;

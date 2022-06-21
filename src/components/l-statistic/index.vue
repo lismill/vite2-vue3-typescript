@@ -1,6 +1,6 @@
 <template>
   <a-row class="l-statistic" type="flex" justify="space-between" align="bottom">
-    <a-col v-for="item in props.data" :key="item.title" :span="props.span" class="flex flex-y-end">
+    <a-col v-for="item in props.data" :key="item.title" :span="props.span" class="m-tb12 flex flex-y-end">
       <!-- icon -->
       <img v-if="!!item.status" src="./images/up.png" class="m-r20" width="50" />
       <img v-else src="./images/down.png" class="m-r20" width="50" />
@@ -11,7 +11,12 @@
           {{ item.title }}
           <a-tooltip v-if="item.tips" placement="top">
             <template #title>{{ item.tips }}</template>
-            <l-ify-icon name="ant-design:question-circle-filled" color="#666666" size="16"></l-ify-icon>
+            <l-ify-icon
+              class="cursor-pointer"
+              name="ant-design:question-circle-filled"
+              color="#666666"
+              size="16"
+            ></l-ify-icon>
           </a-tooltip>
         </template>
       </a-statistic>
