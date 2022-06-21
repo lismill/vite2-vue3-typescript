@@ -1,6 +1,6 @@
 <template>
   <div class="bg-ffffff p-16">
-    <p v-pre>{{ useEnv() }}</p>
+    <p v-pre>{{ useEnvValue() }}</p>
     :
     <p>{{ useEnvValue() }}</p>
   </div>

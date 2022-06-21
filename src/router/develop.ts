@@ -93,6 +93,14 @@ export default {
           },
         },
         {
+          path: "statistic",
+          name: "/develop/others/statistic",
+          component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/others/statistic/index.vue"),
+          meta: {
+            title: "数值统计",
+          },
+        },
+        {
           path: "iframe",
           name: "/develop/others/iframe",
           component: () => import(/* webpackChunkName: "develop" */ "@/views/develop/others/iframe/index.vue"),

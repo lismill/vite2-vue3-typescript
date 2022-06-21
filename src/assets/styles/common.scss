@@ -49,6 +49,9 @@ img {
   display: flex;
   align-items: center;
 }
+.flex-y-end {
+  align-items: flex-end;
+}
 
 // 滚动调样式
 ::-webkit-scrollbar {
