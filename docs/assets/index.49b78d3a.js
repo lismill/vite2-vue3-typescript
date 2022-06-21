@@ -1,1 +1,0 @@
-import{_ as e,o as a,c as t,a as c,a8 as o}from"./index.2f3c60ff.js";const r={};function l(n,s){return a(),t("div",null,[c("p",null,o(Date.now())+" | Hello, i'm automatically created template.",1)])}var _=e(r,[["render",l]]);export{_ as default};

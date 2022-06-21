@@ -1,0 +1,1 @@
+import{d as s,o as a,c as t,a as e,a2 as o,e as n,aw as c,g as r}from"./index.6bf4fbce.js";const l={class:"bg-ffffff p-16"},_=e("p",null,"{{ useEnvValue() }}",-1),f=r(" : "),m=s({setup(p){return(u,d)=>(a(),t("div",l,[_,f,e("p",null,o(n(c)()),1)]))}});export{m as default};

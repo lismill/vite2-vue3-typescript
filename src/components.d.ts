@@ -67,6 +67,7 @@ declare module '@vue/runtime-core' {
     LIframe: typeof import('./components/l-iframe/index.vue')['default']
     LIfyIcon: typeof import('./components/l-ify-icon/index.vue')['default']
     LQrcode: typeof import('./components/l-qrcode/index.vue')['default']
+    LStatistic: typeof import('./components/l-statistic/index.vue')['default']
     LSvgIcon: typeof import('./components/l-svg-icon/index.vue')['default']
     LTable: typeof import('./components/l-table/index.vue')['default']
     LTableChoose: typeof import('./components/l-table-choose/index.vue')['default']
