@@ -18,7 +18,7 @@
             }
           : null
       "
-      :row-key="(record) => record.id"
+      :row-key="rowKey"
       :pagination="false"
       v-bind="config.table.others"
     >
@@ -49,6 +49,7 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(["update:config"]);
 
+const rowKey = (record: any) => record.id;
 const selectedRowKeys = () => props.config.table.selectedRows.map((item: any) => item.id);
 const onChange = (selectedRowKeys: any, selectedRows: any) => {
   let DATA = {

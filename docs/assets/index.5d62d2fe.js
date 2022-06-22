@@ -1,1 +1,0 @@
-import{d as a,H as n,o,ax as r,aI as t}from"./index.6bf4fbce.js";const m=a({setup(c){const e=n();return(_,f)=>{const s=t;return o(),r(s,{ref_key:"iframe",ref:e,class:"l-iframe",src:"https://vitejs.dev"},null,512)}}});export{m as default};

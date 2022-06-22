@@ -101,8 +101,22 @@ export default ({mode, command}) => {
       jsxFragment: "Fragment",
       jsxInject: "import { h } from 'vue';",
     },
+    // 服务配置
     server: {
       https: true,
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          // 分包
+          // eslint-disable-next-line consistent-return
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              return id.toString().split("node_modules/")[1].split("/")[0].toString();
+            }
+          },
+        },
+      },
     },
   });
 };

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-const data = [
+const data: any = [
   {title: "用户数据", value: 112863, status: 1, tips: "这是用户数据的提示"},
   {title: "支付金额", value: "656656", status: 0, tips: "这是支付金额的提示"},
   {title: "支付订单", value: "68963.78", status: 1, tips: "这是支付订单的提示"},

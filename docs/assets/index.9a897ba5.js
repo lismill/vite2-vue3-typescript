@@ -1,1 +1,0 @@
-import{_,d as t,u as o,aM as c,aN as n,o as r,c as p,b as d,aO as i}from"./index.6bf4fbce.js";const u={class:"redirect"},E=t({setup(l){const e=o(),s=c();return n().addKeepAlives(s.query.keepalive),e.back(),(R,m)=>{const a=i;return r(),p("div",u,[d(a)])}}});var S=_(E,[["__scopeId","data-v-291bbd9a"]]);export{S as default};
