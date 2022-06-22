@@ -5,13 +5,13 @@
     :class="{fixed: config?.footer?.fixed}"
     :style="{
       zIndex: 999,
-      justifyContent: config?.footer?.operates ? 'space-between' : 'flex-end',
+      justifyContent: config?.footer?.operates && config?.table?.selectedRows ? 'space-between' : 'flex-end',
       paddingBottom: config?.footer?.fixed ? '0' : '16px',
       left: USE_STORE_COMMON.collapsed ? '77px' : '217px',
     }"
   >
     <!-- operates -->
-    <div v-if="config.footer.operates" class="m-l16">
+    <div v-if="config.footer.operates && config?.table?.selectedRows" class="m-l16">
       <a-checkbox v-model:checked="checked" class="m-l8" @click="selectAll">
         {{ checked ? "取消全选" : "全部选中" }}
       </a-checkbox>

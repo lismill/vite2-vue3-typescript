@@ -1,5 +1,13 @@
 <template>
-  <l-table :config="config" @click:operate="clickOperate">
+  <l-table :config="config" @click:operate="clickOperate" @update:config="updateConfig">
+    <!-- 自定义搜索选项 -->
+    <template #slot-date>slot-date</template>
+    <!-- 自定义表格头部 -->
+    <!-- <template #custom-header>custom-header</template> -->
+    <!-- 自定义功能按钮 -->
+    <!-- <template #toolbar-operates>toolbar-operates</template> -->
+
+    <!-- 自定义列 -->
     <template #operate="scope">
       <a class="link" @click="clickOperate({name: '编辑'}, scope.rows)">编辑</a>
       <a class="link" @click="clickOperate({name: '删除'}, scope.rows)">删除</a>
@@ -50,6 +58,10 @@ const clickOperate = (item: any, data: any) => {
     default:
       break;
   }
+};
+
+const updateConfig = (DATA: any) => {
+  console.log(DATA);
 };
 </script>
 <script lang="ts">

@@ -5,7 +5,7 @@
         <a-col
           v-for="item in config.search.forms"
           :key="item.label"
-          v-bind="config?.search?.span ? config.search.span : {span: 6}"
+          v-bind="config?.search?.col ? config.search.col : {span: 6}"
           style="padding-left: 36px"
         >
           <!-- input -->
@@ -46,6 +46,10 @@
                 {{ option.label }}
               </a-select-option>
             </a-select>
+          </a-form-item>
+          <!-- select -->
+          <a-form-item v-if="item.type === 'slot'" :label="item.label" :name="item.name" :rules="item.rules">
+            <slot :name="item.name"></slot>
           </a-form-item>
         </a-col>
         <!-- <a-col flex="auto" class="m-b24" style="text-align: right">

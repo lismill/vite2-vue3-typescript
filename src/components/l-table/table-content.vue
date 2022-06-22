@@ -9,11 +9,15 @@
     <a-table
       :data-source="config.table.data"
       :columns="config.table.columns"
-      :row-selection="{
-        type: config.table?.selectedType ?? 'checkbox',
-        selectedRowKeys: selectedRowKeys(),
-        onChange: onChange,
-      }"
+      :row-selection="
+        config?.table?.selectedRows
+          ? {
+              type: config.table?.selectedType ?? 'checkbox',
+              selectedRowKeys: selectedRowKeys(),
+              onChange: onChange,
+            }
+          : null
+      "
       :row-key="(record) => record.id"
       :pagination="false"
       v-bind="config.table.others"

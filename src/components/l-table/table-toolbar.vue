@@ -15,34 +15,34 @@
       </a-radio-group>
     </div>
     <!-- operates -->
-    <div v-if="config?.toolbar?.operates" class="operate">
-      <a-button
-        v-for="item in config.toolbar.operates"
-        :key="item.name"
-        class="m-l8"
-        v-bind="item.others"
-        @click="() => emit('click:operate', item, config)"
-      >
-        {{ item.name }}
-      </a-button>
-    </div>
+    <!-- 自定义功能按钮 -->
+    <template v-if="toolbarOperates">
+      <slot name="toolbar-operates"></slot>
+    </template>
+    <template v-else>
+      <div v-if="config?.toolbar?.operates" class="operate">
+        <a-button
+          v-for="item in config.toolbar.operates"
+          :key="item.name"
+          class="m-l8"
+          v-bind="item.others"
+          @click="() => emit('click:operate', item, config)"
+        >
+          {{ item.name }}
+        </a-button>
+      </div>
+    </template>
   </div>
-  <!-- footer -->
-  <a-row v-if="config?.toolbar?.tool" type="flex" justify="end" class="p-t16 p-lr16 p-l16 bg-ffffff">
-    <a-col>
-      <!-- 刷新 -->
-      <!-- 密度 -->
-      <!-- 选择列 -->
-    </a-col>
-  </a-row>
 </template>
 <script setup lang="ts">
-import {ref} from "vue";
+import {ref, useSlots} from "vue";
 
 const props = defineProps<{
   config: any;
 }>();
 const emit = defineEmits(["update:config", "click:operate"]);
+
+const toolbarOperates = !!useSlots()["toolbar-operates"];
 
 /**
  * 状态切换

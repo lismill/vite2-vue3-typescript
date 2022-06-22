@@ -1,12 +1,22 @@
 <template>
   <div class="l-table">
-    <TableSearch v-model:config="deepConfig" @update:config="updateConfig"></TableSearch>
+    <TableSearch v-model:config="deepConfig" @update:config="updateConfig">
+      <!-- 自定义插槽 -->
+      <template v-for="slot in slots" :key="slot" #[slot]="rows">
+        <slot :name="slot" :rows="rows.rows"></slot>
+      </template>
+    </TableSearch>
     <a-spin :spinning="loading">
-      <TableToolbar
-        v-model:config="deepConfig"
-        @update:config="updateConfig"
-        @click:operate="clickOperate"
-      ></TableToolbar>
+      <!-- 工具栏 -->
+      <TableToolbar v-model:config="deepConfig" @update:config="updateConfig" @click:operate="clickOperate">
+        <template v-if="toolbarOperates" #toolbar-operates>
+          <slot name="toolbar-operates"></slot>
+        </template>
+      </TableToolbar>
+      <!-- 自定义头部插槽 -->
+      <div v-if="customHeader" class="bg-ffffff p-l16 p-t16">
+        <slot name="custom-header"></slot>
+      </div>
       <TableContent v-model:config="deepConfig" @update:config="updateConfig">
         <!-- 自定义插槽 -->
         <template v-for="slot in slots" :key="slot" #[slot]="rows">
@@ -22,7 +32,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import {onMounted, ref, useSlots} from "vue";
 import TableSearch from "./table-search.vue";
 import TableToolbar from "./table-toolbar.vue";
 import TableContent from "./table-content.vue";
@@ -33,11 +43,10 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(["click:operate", "update:config"]);
 const deepConfig = ref(props.config);
-const slots = props.config?.table?.columns?.length
-  ? props.config.table.columns
-      .filter((item: {type: string}) => item.type === "slot")
-      .map((item: {dataIndex: any}) => item.dataIndex)
-  : [];
+
+const slots = Object.keys(useSlots());
+const customHeader = !!useSlots()["custom-header"];
+const toolbarOperates = !!useSlots()["toolbar-operates"];
 
 /**
  * 请求数据
