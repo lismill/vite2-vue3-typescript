@@ -3,6 +3,7 @@ import Framework from "@/views/_layout/framework.vue";
 export default {
   path: "/dashboard",
   name: "/dashboard",
+  sort: 1,
   redirect: "/dashboard/index",
   component: Framework,
   children: [

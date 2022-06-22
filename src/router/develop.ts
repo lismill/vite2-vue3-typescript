@@ -4,6 +4,7 @@ import Layout from "@/views/_layout/index.vue";
 export default {
   path: "/develop",
   name: "/develop",
+  sort: 999,
   redirect: "/develop/index",
   meta: {
     title: "开发者工具",

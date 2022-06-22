@@ -2,9 +2,10 @@ import Framework from "@/views/_layout/framework.vue";
 
 export default {
   path: "/hooks",
+  sort: 2,
   component: Framework,
   redirect: "/hooks/use-env",
-  meta: {title: "Hooks", icon: "mdi:dev-to"},
+  meta: {title: "Hooks", icon: "tabler:webhook"},
   children: [
     {
       path: "use-env",

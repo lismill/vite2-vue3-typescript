@@ -3,6 +3,7 @@ import Framework from "@/views/_layout/framework.vue";
 export default {
   path: "/framework",
   name: "/framework",
+  sort: 0,
   redirect: "/framework/redirect",
   component: Framework,
   meta: {

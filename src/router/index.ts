@@ -3,7 +3,9 @@ import {useEnvValue} from "@/hooks/useEnvValue";
 
 // 自动导入当前目录下的路由配置
 const modules = import.meta.globEager("./*.ts");
-const ROUTES = Object.values(modules).map((routes) => routes.default);
+const ROUTES = Object.values(modules)
+  .map((routes) => routes.default)
+  .sort((a, b) => a.sort - b.sort);
 
 // 路由记录，这个跟vue2中用法一致，就不做过多解释了
 const routes: Array<RouteRecordRaw> = [

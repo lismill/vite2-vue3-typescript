@@ -2,6 +2,7 @@ import Layout from "@/views/_layout/index.vue";
 
 export default {
   path: "/",
+  sort: 0,
   component: Layout,
   redirect: "/dashboard",
   children: [
