@@ -24,7 +24,7 @@ export default {
       {type: "date", label: "日期", name: "date", others: {}},
       {type: "slot", label: "自定义日期", name: "slot-date", others: {}},
       {type: "date", label: "日期", name: "date", others: {}},
-      {type: "date", label: "日期", name: "date", others: {}},
+      {type: "daterange", label: "日期范围", name: "daterange", others: {}},
       {type: "date", label: "日期", name: "date", others: {}},
       {
         type: "select",

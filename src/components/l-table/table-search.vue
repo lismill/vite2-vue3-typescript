@@ -20,7 +20,7 @@
               :allow-clear="true"
               :placeholder="`请输入${item.label}`"
               v-bind="item.others"
-              @blur="onChange"
+              @change="onChange"
             />
           </a-form-item>
           <!-- date -->
@@ -28,6 +28,16 @@
             <a-date-picker
               v-model:value="formState[item.name]"
               :placeholder="`请输入${item.label}`"
+              style="width: 100%"
+              v-bind="item.others"
+              @change="onChange"
+            />
+          </a-form-item>
+          <!-- daterange -->
+          <a-form-item v-if="item.type === 'daterange'" :label="item.label" :name="item.name" :rules="item.rules">
+            <a-range-picker
+              v-model:value="formState[item.name]"
+              :placeholder="[`开始${item.label}`, `结束${item.label}`]"
               style="width: 100%"
               v-bind="item.others"
               @change="onChange"
@@ -64,6 +74,7 @@
 <script setup lang="ts">
 import {ref, reactive} from "vue";
 import type {FormInstance} from "ant-design-vue";
+import _ from "lodash";
 
 const props = defineProps<{
   config: any;
@@ -76,7 +87,7 @@ const formState: any = reactive({});
 /**
  * 表格搜索
  */
-const onChange = () => {
+const onChange = _.debounce(() => {
   let DATA = {
     ...props.config,
     search: {
@@ -99,7 +110,7 @@ const onChange = () => {
       },
     });
   emit("update:config", DATA, true);
-};
+}, 600);
 </script>
 <style lang="scss" scoped>
 .table-search {
