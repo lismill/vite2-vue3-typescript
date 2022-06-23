@@ -1,6 +1,6 @@
 <template>
   <a-row class="l-statistic" type="flex" justify="space-between" align="bottom">
-    <a-col v-for="item in props.data" :key="item.title" :span="props.span" class="m-tb12 flex flex-y-end">
+    <a-col v-for="item in data" :key="item.title" :span="span" class="m-tb12 flex flex-y-end">
       <!-- icon -->
       <img v-if="!!item.status" src="./images/up.png" class="m-r20" width="50" />
       <img v-else src="./images/down.png" class="m-r20" width="50" />
@@ -32,7 +32,7 @@ interface IData {
   tips?: string;
 }
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     data: Array<IData>;
     span: string;

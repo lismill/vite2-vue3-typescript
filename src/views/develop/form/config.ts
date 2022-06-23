@@ -7,8 +7,15 @@ export default {
     span: 24,
     // 配置表单操作按钮
     operates: {
-      header: [{name: "预览数据", others: {type: "primary"}}],
-      footer: [
+      left: [{name: "预览数据", others: {type: "primary"}}],
+      center: {
+        // default center value
+        resetButtonShow: true,
+        resetButtonText: "重置",
+        confirmButtonShow: true,
+        confirmButtonText: "提交",
+      },
+      right: [
         {name: "检测数据", others: {type: "primary", class: "warning"}},
         {name: "暂存数据", others: {type: "primary", class: "success"}},
         {name: "删除数据", others: {type: "primary", danger: true}},

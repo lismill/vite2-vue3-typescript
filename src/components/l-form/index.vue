@@ -198,15 +198,15 @@
         class="fixed-operates"
         :style="{
           left: USE_STORE_COMMON.collapsed ? '77px' : '217px',
-          position: deepConfig?.form?.dialog ? 'static' : 'fixed',
-          justifyContent: deepConfig.form?.dialog?.justify ?? 'flex-end',
+          position: deepConfig.form?.dialog ? 'static' : 'fixed',
+          justifyContent: deepConfig.form?.dialog?.justify ?? 'center',
         }"
       >
         <template v-if="!config?.form?.disabled">
           <!-- header -->
-          <template v-if="config?.form?.operates?.header">
+          <template v-if="config?.form?.operates?.left">
             <a-button
-              v-for="header in deepConfig.form.operates.header"
+              v-for="header in deepConfig.form.operates.left"
               :key="header.name"
               class="m-lr4"
               v-bind="header.others"
@@ -215,12 +215,27 @@
               {{ header.name }}
             </a-button>
           </template>
-          <a-button class="info m-lr4" type="primary" @click="resetForm">重置</a-button>
-          <a-button class="m-lr4" type="primary" html-type="submit">提交</a-button>
+          <!-- center -->
+          <a-button
+            v-if="deepConfig?.form?.operates?.center?.resetButtonShow ?? true"
+            class="info m-lr4"
+            type="primary"
+            @click="resetForm"
+          >
+            {{ deepConfig?.form?.operates?.center?.resetButtonText ?? "重置" }}
+          </a-button>
+          <a-button
+            v-if="deepConfig?.form?.operates?.center?.confirmButtonShow ?? true"
+            class="m-lr4"
+            type="primary"
+            html-type="submit"
+          >
+            {{ deepConfig?.form?.operates?.center?.confirmButtonText ?? "提交" }}
+          </a-button>
           <!-- footer -->
-          <template v-if="config?.form?.operates?.footer">
+          <template v-if="config?.form?.operates?.right">
             <a-button
-              v-for="footer in deepConfig.form.operates.footer"
+              v-for="footer in deepConfig.form.operates.right"
               :key="footer.name"
               class="m-lr4"
               v-bind="footer.others"
