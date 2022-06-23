@@ -108,13 +108,17 @@ export default ({mode, command}) => {
     build: {
       rollupOptions: {
         output: {
-          // 分包
+          // 静态资源分拆打包
           // eslint-disable-next-line consistent-return
           manualChunks(id) {
             if (id.includes("node_modules")) {
               return id.toString().split("node_modules/")[1].split("/")[0].toString();
             }
           },
+          // 静态资源分类打包
+          chunkFileNames: "static/js/[name]-[hash].js",
+          entryFileNames: "static/js/[name]-[hash].js",
+          assetFileNames: "static/[ext]/[name]-[hash].[ext]",
         },
       },
     },
